@@ -1,10 +1,10 @@
 ## Short Format:
-<name/link> size min_time_t-max_time_t(min_time_m-max_time_m) flags
-
+``<name/link> size min_time_t-max_time_t(min_time_m-max_time_m) `flags` `` **or**  
+``<name/link> size time_t(time_m) `flags` ``
 ### Unprefixed Opcodes:
 
 |#|0|1|2|3|4|5|6|7|8|9|A|B|C|D|E|F|
-|0|[NOP](nm/NOP) 1 4-4(1-1) ----|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|0|[NOP](nm/NOP) 1 4t(1m) `----`|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |1|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |2|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |3|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
@@ -22,9 +22,10 @@
 |F|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 
 ### CB Prefixed Opcodes:
+As a bit of clarification, all CB prefixed Opcodes take at least 8 t(2m)-cycles and are all two (2) bytes long. This includes the prefix. So, RLC B takes a _total_ of 8 t(2m)-cycles to execute. Additionally, CB prefixed Opcodes can _not_ have an interrupt occur between the prefix and the instruction.
 
 |#|0|1|2|3|4|5|6|7|8|9|A|B|C|D|E|F|
-|0|[RLC B](cb/RLC B)|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|0|[RLC B](cb/RLC B) 2 8t(2m) Z00C|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |1|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |2|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |3|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
