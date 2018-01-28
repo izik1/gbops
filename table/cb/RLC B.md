@@ -1,1 +1,1 @@
-[back to table](table/main)
+[back to table](../main)
