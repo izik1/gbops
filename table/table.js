@@ -1,5 +1,5 @@
 var op_tmpl_helpers = {
-    timing: (min, max) => min !== max ? `${min}t-${max}t` : `${min}t`
+    timing: (min, max) => min !== max ? `${min}t-${max}t/${min/4}m-${max/4}m` : `${min}t/${min/4}m`
 };
 
 function loadTable16x(op_table) {
