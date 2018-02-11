@@ -6,7 +6,7 @@ var op_tmpl_helpers = {
 			case "x16/alu": return "LimeGreen"
 			case "x8/rsb": return "Cyan"
 			case "x8/alu": return "Lime"
-			case "Control/Misc": return "Tomato"
+			case "control/misc": return "Tomato"
 			case "x8/lsm": return "Orchid"
 			case "control/br": return "LightSalmon"
 			default: return "inherit"

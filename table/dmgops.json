@@ -2,7 +2,7 @@
    "Unprefixed" : [
       {
          "Name" : "NOP",
-         "Group" : "Control/Misc",
+         "Group" : "control/misc",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
          "Length" : 1,
@@ -210,7 +210,7 @@
       },
       {
          "Name" : "STOP",
-         "Group" : "Control/Misc",
+         "Group" : "control/misc",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
          "Length" : 2,
@@ -833,11 +833,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD B,B",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -846,11 +846,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD B,C",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -859,11 +859,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD B,D",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -872,11 +872,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD B,E",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -885,11 +885,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD B,H",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -898,11 +898,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD B,L",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -911,11 +911,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD B,(HL)",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -924,11 +924,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD B,A",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -937,11 +937,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD C,B",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -950,11 +950,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD C,C",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -963,11 +963,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD C,D",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -976,11 +976,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD C,E",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -989,11 +989,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD C,H",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1002,11 +1002,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD C,L",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1015,11 +1015,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD C,(HL)",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1028,11 +1028,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD C,A",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1041,11 +1041,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD D,B",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1054,11 +1054,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD D,C",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1067,11 +1067,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD D,D",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1080,11 +1080,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD D,E",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1093,11 +1093,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD D,H",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1106,11 +1106,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD D,L",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1119,11 +1119,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD D,(HL)",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1132,11 +1132,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD D,A",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1145,11 +1145,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD E,B",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1158,11 +1158,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD E,C",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1171,11 +1171,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD E,D",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1184,11 +1184,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD E,E",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1197,11 +1197,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD E,H",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1210,11 +1210,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD E,L",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1223,11 +1223,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD E,(HL)",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1236,11 +1236,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD E,A",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1249,11 +1249,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD H,B",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1262,11 +1262,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD H,C",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1275,11 +1275,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD H,D",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1288,11 +1288,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD H,E",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1301,11 +1301,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD H,H",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1314,11 +1314,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD H,L",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1327,11 +1327,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD H,(HL)",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1340,11 +1340,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD H,A",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1353,11 +1353,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD L,B",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1366,11 +1366,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD L,C",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1379,11 +1379,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD L,D",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1392,11 +1392,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD L,E",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1405,11 +1405,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD L,H",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1418,11 +1418,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD L,L",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1431,11 +1431,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD L,(HL)",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1444,11 +1444,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD L,A",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1457,11 +1457,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD (HL),B",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1470,11 +1470,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD (HL),C",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1483,11 +1483,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD (HL),D",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1496,11 +1496,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD (HL),E",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1509,11 +1509,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD (HL),H",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1522,11 +1522,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD (HL),L",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1535,11 +1535,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "HALT",
+         "Group" : "control/misc",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1548,11 +1548,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD (HL),A",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1561,11 +1561,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD A,B",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1574,11 +1574,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD A,C",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1587,11 +1587,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD A,D",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1600,11 +1600,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD A,E",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1613,11 +1613,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD A,H",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1626,11 +1626,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD A,L",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1639,11 +1639,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD A,(HL)",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1652,11 +1652,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "LD A,A",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -1665,7 +1665,7 @@
          }
       },
       {
-         "Name" : "",
+         "Name" : "A",
          "Group" : "",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
