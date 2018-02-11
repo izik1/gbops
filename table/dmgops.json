@@ -131,11 +131,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD A,(BC)",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -144,11 +144,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "DEC BC",
+         "Group" : "x16/alu",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -313,11 +313,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "JR i8",
+         "Group" : "control/br",
+         "TCyclesMax" : 12,
+         "TCyclesMin" : 12,
+         "Length" : 2,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -339,11 +339,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD A,(DE)",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -352,11 +352,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "DEC DE",
+         "Group" : "x16/alu",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -417,11 +417,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "JR NZ,i8",
+         "Group" : "control/br",
+         "TCyclesMax" : 12,
+         "TCyclesMin" : 8,
+         "Length" : 2,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -508,24 +508,24 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "DAA",
+         "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
-            "Z" : "-",
+            "Z" : "Z",
             "N" : "-",
-            "H" : "-",
-            "C" : "-"
+            "H" : "0",
+            "C" : "C"
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "JR NC,i8",
+         "Group" : "control/br",
+         "TCyclesMax" : 12,
+         "TCyclesMin" : 8,
+         "Length" : 2,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -547,11 +547,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD A,(HL+)",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -560,11 +560,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "DEC HL",
+         "Group" : "x16/alu",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -612,24 +612,24 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "CPL",
+         "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
-            "N" : "-",
-            "H" : "-",
+            "N" : "1",
+            "H" : "1",
             "C" : "-"
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "JR Z,i8",
+         "Group" : "control/br",
+         "TCyclesMax" : 12,
+         "TCyclesMin" : 8,
+         "Length" : 2,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -716,24 +716,24 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "SCF",
+         "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
-            "N" : "-",
-            "H" : "-",
-            "C" : "-"
+            "N" : "0",
+            "H" : "0",
+            "C" : "1"
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "JR C,i8",
+         "Group" : "control/br",
+         "TCyclesMax" : 12,
+         "TCyclesMin" : 8,
+         "Length" : 2,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -755,11 +755,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "LD A,(HL-)",
+         "Group" : "x8/lsm",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -768,11 +768,11 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "DEC SP",
+         "Group" : "x16/alu",
+         "TCyclesMax" : 8,
+         "TCyclesMin" : 8,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
             "N" : "-",
@@ -820,16 +820,16 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "CCF",
+         "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
             "Z" : "-",
-            "N" : "-",
-            "H" : "-",
-            "C" : "-"
+            "N" : "0",
+            "H" : "0",
+            "C" : "C"
          }
       },
       {
