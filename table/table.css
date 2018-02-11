@@ -8,6 +8,7 @@ table, th, td {
 table {
     table-layout: fixed;
     width: 100%;
+	min-width: 1500px;
 }
 
 tr:nth-child(odd) {
