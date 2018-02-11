@@ -28,7 +28,7 @@
       },
       {
          "Name" : "LD (BC),A",
-         "Group" : "x16/lsm",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 8,
          "TCyclesMin" : 8,
          "Length" : 1,
@@ -236,7 +236,7 @@
       },
       {
          "Name" : "LD (DE),A",
-         "Group" : "x16/lsm",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 8,
          "TCyclesMin" : 8,
          "Length" : 1,
@@ -444,7 +444,7 @@
       },
       {
          "Name" : "LD (HL+),A",
-         "Group" : "x16/lsm",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 8,
          "TCyclesMin" : 8,
          "Length" : 1,
@@ -652,7 +652,7 @@
       },
       {
          "Name" : "LD (HL-),A",
-         "Group" : "x16/lsm",
+         "Group" : "x8/lsm",
          "TCyclesMax" : 8,
          "TCyclesMin" : 8,
          "Length" : 1,
