@@ -1,6 +1,6 @@
 var cycleMode = "t";
 
-function cycle_mode_changed(event) {
+function cycle_mode_changed(event) { // this is done very inefficiently
 	cycleMode = event.target.value;
 	redrawTables();
 }
@@ -30,9 +30,16 @@ var op_tmpl_helpers = {
 };
 
 function redrawTables() {
-	$('#unprefixed').remove();
-	$('#cbprefixed').remove();
-	loadTables();
+	var old_unprefixed = $('#unprefixed');
+	var old_cbprefixed = $('#cbprefixed');
+    $.getJSON("dmgops.json", null, ops => {
+		var new_unprefixed = loadTable16x(ops.Unprefixed).attr('id', 'unprefixed');
+		var new_cbprefixed = loadTable16x(ops.CBPrefixed).attr('id', 'cbprefixed');
+        old_unprefixed.remove();
+		old_cbprefixed.remove();
+		$('body').append(new_unprefixed)
+            .append(new_cbprefixed);
+    });
 }
 
 function loadTable16x(op_table) {
