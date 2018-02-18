@@ -9,6 +9,7 @@ var op_tmpl_helpers = {
 			case "control/misc": return "Tomato"
 			case "x8/lsm": return "Orchid"
 			case "control/br": return "LightSalmon"
+			case "unused": return "SlateGray"
 			default: return "inherit"
 		}
 	}

@@ -2,9 +2,11 @@
 <head>
     <script id="op-tmpl" type="text/x-jsrender">
         <td style="background-color: {{:~color(Group)}};">
+		{{if Name != "UNUSED"}}
             {{:Name}}
             <br />{{:Length}} {{:~timing(TCyclesMin, TCyclesMax)}}
             <br />{{:Flags.Z}}{{:Flags.N}}{{:Flags.H}}{{:Flags.C}}
+		{{/if}}
         </td>
     </script>
     <link rel="preload" href="dmgops.json" as="fetch">
