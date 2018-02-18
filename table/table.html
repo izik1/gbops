@@ -15,9 +15,19 @@
     <script src="https://www.jsviews.com/download/jsrender.js"></script>
     <script type="text/javascript" src="table.js"></script>
     <script>
-        window.onload = () => loadTables();
+        window.onload = () => {
+		    loadTables();
+			document.querySelector('select[name="cycle_mode"]').onchange=cycle_mode_changed;
+		}
     </script>
 </head>
 <body>
+<label>Cycle mode:
+    <select name="cycle_mode">
+        <option value="t" selected>t</option>
+	    <option value="m">m</option>
+		<option value="both">both</option>
+    </input>
+</label>
 </body>
 </html>
