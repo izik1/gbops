@@ -8,11 +8,11 @@ table, th, td {
 table {
     table-layout: fixed;
     width: 100%;
-	min-width: 1500px;
+    min-width: 1500px;
 }
 
 th:first-child {
-    width: 20px;
+    width: 30px;
 }
 
 tr:nth-child(odd) {
