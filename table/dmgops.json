@@ -2512,8 +2512,8 @@
       {
          "Name" : "POP BC",
          "Group" : "x16/lsm",
-         "TCyclesMax" : 16,
-         "TCyclesMin" : 16,
+         "TCyclesMax" : 12,
+         "TCyclesMin" : 12,
          "Length" : 1,
          "Flags" : {
             "Z" : "-",
@@ -2551,7 +2551,7 @@
       {
          "Name" : "CALL NZ,u16",
          "Group" : "control/br",
-         "TCyclesMax" : 20,
+         "TCyclesMax" : 24,
          "TCyclesMin" : 12,
          "Length" : 3,
          "Flags" : {
@@ -2655,7 +2655,7 @@
       {
          "Name" : "CALL Z,u16",
          "Group" : "control/br",
-         "TCyclesMax" : 20,
+         "TCyclesMax" : 24,
          "TCyclesMin" : 12,
          "Length" : 3,
          "Flags" : {
@@ -2668,8 +2668,8 @@
       {
          "Name" : "CALL u16",
          "Group" : "control/br",
-         "TCyclesMax" : 20,
-         "TCyclesMin" : 20,
+         "TCyclesMax" : 24,
+         "TCyclesMin" : 24,
          "Length" : 3,
          "Flags" : {
             "Z" : "-",
@@ -2720,8 +2720,8 @@
       {
          "Name" : "POP DE",
          "Group" : "x16/lsm",
-         "TCyclesMax" : 16,
-         "TCyclesMin" : 16,
+         "TCyclesMax" : 12,
+         "TCyclesMin" : 12,
          "Length" : 1,
          "Flags" : {
             "Z" : "-",
@@ -2759,7 +2759,7 @@
       {
          "Name" : "CALL NC,u16",
          "Group" : "control/br",
-         "TCyclesMax" : 20,
+         "TCyclesMax" : 24,
          "TCyclesMin" : 12,
          "Length" : 3,
          "Flags" : {
@@ -2824,8 +2824,8 @@
       {
          "Name" : "RETI",
          "Group" : "control/br",
-         "TCyclesMax" : 20,
-         "TCyclesMin" : 20,
+         "TCyclesMax" : 16,
+         "TCyclesMin" : 16,
          "Length" : 1,
          "Flags" : {
             "Z" : "-",
@@ -2863,7 +2863,7 @@
       {
          "Name" : "CALL C,u16",
          "Group" : "control/br",
-         "TCyclesMax" : 20,
+         "TCyclesMax" : 24,
          "TCyclesMin" : 12,
          "Length" : 3,
          "Flags" : {
@@ -2928,8 +2928,8 @@
       {
          "Name" : "POP HL",
          "Group" : "x16/lsm",
-         "TCyclesMax" : 16,
-         "TCyclesMin" : 16,
+         "TCyclesMax" : 12,
+         "TCyclesMin" : 12,
          "Length" : 1,
          "Flags" : {
             "Z" : "-",
@@ -3136,8 +3136,8 @@
       {
          "Name" : "POP AF",
          "Group" : "x16/lsm",
-         "TCyclesMax" : 16,
-         "TCyclesMin" : 16,
+         "TCyclesMax" : 12,
+         "TCyclesMin" : 12,
          "Length" : 1,
          "Flags" : {
             "Z" : "Z",
