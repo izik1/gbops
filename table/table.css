@@ -24,3 +24,29 @@ th, td {
     justify-content: center;
     text-align: center;
 }
+
+#floating-box-container {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: darkgrey;
+    background-color: rgba(169,169,169, .6);
+
+}
+
+#floating-box {
+    position: fixed;
+    top: 20%;
+    left: 25%;
+    width: 50%;
+    height: 60%;
+    background-color: white;
+    border: 1px solid black;
+    padding: 1em 1em 1em 1em;
+}
+
+#header {
+    padding-bottom: 0.5em
+}

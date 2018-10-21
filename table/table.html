@@ -1,96 +1,81 @@
+<meta charset="utf-8" /> 
 <html>
 <head>
-    <script id="table-tmpl" type="text/x-jsrender">
-        <table id="{{:id}}">
-            {{:~get_top_header(width)}}
-            {{:~get_rows(width, table)}}
-        </table>
-    </script>
-    <script id="op-tmpl" type="text/x-jsrender">
-        <td style="background-color: {{:~color(Group)}};">
-            {{if Name != "UNUSED"}}
-            {{:Name}}
-            <br />{{:Length}} {{:~timing(TCyclesMin, TCyclesMax)}}
-            <br />{{:Flags.Z}}&#8203;{{:Flags.N}}&#8203;{{:Flags.H}}&#8203;{{:Flags.C}}
-            {{/if}}
-        </td>
-    </script>
     <link rel="preload" href="dmgops.json" as="fetch">
     <link rel="stylesheet" href="table.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://www.jsviews.com/download/jsrender.js"></script>
     <script type="text/javascript" src="table.js"></script>
     <script>
-        window.onload = () => init();
+        window.onload = init;
     </script>
 </head>
 <body>
-    <details>
-        <summary>Help</summary>    <h5>Instruction format: </h5>
+    <div id="header">
+        <details>
+            <summary>Help</summary>    <h5>Instruction format: </h5>
 
-        <div style="
-    display: inline-block;
-    border:1px solid black;
-    font-family: monospace;
-    font-size: small;
-    text-align:center;
-    padding: 5px 5px 5px 5px">
+            <div style="
+            display: inline-block;
+            border:1px solid black;
+            font-family: monospace;
+            font-size: small;
+            text-align:center;
+            padding: 5px 5px 5px 5px">
+                MNEMONIC ARGS<br />
+                LENGTH DURATION<br />
+                AFFECTED FLAGS<br />
+            </div> <br />
 
-            MNEMONIC ARGS<br />
-            LENGTH DURATION<br />
-            AFFECTED FLAGS<br />
-        </div> <br />
+            <h5>Example instruction: </h5>
 
-        <h5>Example instruction: </h5>
+            <div style="
+            display: inline-block;
+            border:1px solid black;
+            font-family: monospace;
+            font-size: small;
+            min-width: 96px;
+            text-align:center">
 
-        <div style="
-    display: inline-block;
-    border:1px solid black;
-    font-family: monospace;
-    font-size: small;
-    min-width: 96px;
-    text-align:center">
+                XOR A,A <br />
+                1 4t <br />
+                Z&#8203;0&#8203;0&#8203;0<br />
+            </div> <br />
+            <h5>What's a 't'?</h5>
+            <p>
+                The 't' in the example instruction means a "T-Cycle" which is one of the two ways to
+                count the number of clock ticks on the Game Boy.
+                A T-Cycle is 1 Game Boy cpu clock tick. (t=tick)
+                The other way is with "M-Cycles" (machine cycles) which are just t/4 (4t=1m).
+                [wip: Description of <b>why</b> to use M-cycles goes here.]
+                However more complex timing uses T-Cycles. This opcode table allows you to switch between using either or both.
+            </p>
+            <h5>Flags?</h5>
+            <p>
+                The names for the flags that this opcode table uses are:<br />
+                Z = "Zero", N = "Negative", H = "Half carry" and C = "Carry" (always in that order)<br />
+                An instruction can do various things to the flags such as always set (1),
+                always reset (0),
+                set or reset depending on the result of the instrucion (letter for flag)
+                or do nothing (-)
+            </p>
+        </details>
 
-            XOR A,A <br />
-            1 4t <br />
-            Z&#8203;0&#8203;0&#8203;0<br />
-        </div> <br />
-        <h5>What's a 't'?</h5>
-        <p>
-            The 't' in the example instruction means a "T-Cycle" which is one of the two ways to
-            count the number of clock ticks on the Game Boy.
-            A T-Cycle is 1 Game Boy cpu clock tick. (t=tick)
-            The other way is with "M-Cycles" (machine cycles) which are just t/4 (4t=1m).
-            [wip: Description of <b>why</b> to use M-cycles goes here.]
-            However more complex timing uses T-Cycles. This opcode table allows you to switch between using either or both.
-        </p>
-        <h5>Flags?</h5>
-        <p>
-            The names for the flags that this opcode table uses are:<br />
-            Z = "Zero", N = "Negative", H = "Half carry" and C = "Carry" (always in that order)<br />
-            An instruction can do various things to the flags such as always set (1),
-            always reset (0),
-            set or reset depending on the result of the instrucion (letter for flag)
-            or do nothing (-)
-        </p>
-    </details>
-
-    <label>
-        Table Width:
-        <select name="table_width">
-            <!-- currently doesn't seem to be too useful, so commented. -->
-            <!-- <option value="4">4x</option> -->
-            <option value="8">8x</option>
-            <option value="16" selected>16x</option>
-        </select>
-    </label>
-    <label>
-        Cycle mode:
-        <select name="cycle_mode">
-            <option value="t" selected>t</option>
-            <option value="m">m</option>
-            <option value="both">both</option>
-        </select>
-    </label>
+        <label>
+            Table Width:
+            <select name="table_width">
+                <option value="8">8x</option>
+                <option value="16" selected>16x</option>
+            </select>
+        </label>
+        <label>
+            Cycle mode:
+            <select name="cycle_mode">
+                <option value="t" selected>t</option>
+                <option value="m">m</option>
+                <option value="both">both</option>
+            </select>
+        </label>
+    </div>
+    <div id="floating-box-container" style="display: none;" onClick="disableFloatingBox()"><div id="floating-box"></div></div>
 </body>
 </html>

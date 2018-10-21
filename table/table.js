@@ -25,6 +25,20 @@ function cycle_mode_changed(event) {
     redrawTables();
 }
 
+function create_op(op) {
+    if(op.Name != "UNUSED")
+        span = $("<span/>").html(`${op.Name}<br/>
+            ${op.Length} ${op_tmpl_helpers.timing(op.TCyclesMin, op.TCyclesMax)}<br>
+            ${op.Flags.Z}&#8203;${op.Flags.N}&#8203;${op.Flags.H}&#8203;${op.Flags.C}`);
+    else span = null;
+    td = $("<td>/").append(span).css("background-color", op_tmpl_helpers.color(op.Group));
+    if(op.TimingMax !== undefined && op.Name != "UNUSED") {
+        td.dblclick(op, enableFloatingBox);
+    }
+
+    return td; 
+}
+
 var table_tmpl_helper = {
     get_top_header: width => {
         var row = $('<tr><th>--</th></tr>')
@@ -41,11 +55,12 @@ var table_tmpl_helper = {
         for (var row_num = 0; row_num < 0x100 / step; row_num++) {
             var row = $('<tr/>').append(`<th>${get_prefix(row_num)}</th>`).appendTo(rows);
             for (var i = 0; i < step; i++) {
-                row.append($.templates('#op-tmpl').render(table_data[row_num * step + i], op_tmpl_helpers));
+                current = table_data[row_num * step + i];
+                row.append(create_op(current));
             }
         }
 
-        return rows.html();
+        return rows;
     }
 };
 
@@ -90,13 +105,11 @@ function loadTable(id, table) {
     if (!tables[width]) tables[width] = [];
     if (!tables[width][id + '_' + cycle_mode]) {
         if (!table) return null;
-        tables[width][id + '_' + cycle_mode] = $($.templates('#table-tmpl').render(
-            { width: width, id: id, table: table },
-            table_tmpl_helper
-        ));
+        table_tmp = $('<table/>').attr('id', id).append(table_tmpl_helper.get_top_header(width)).append(table_tmpl_helper.get_rows(width, table).children())
+        tables[width][id + '_' + cycle_mode] = table_tmp;
     }
-
-    return tables[width][id + '_' + cycle_mode].clone().attr('id', id);
+    
+    return tables[width][id + '_' + cycle_mode].attr('id', id);
 }
 
 function init() {
@@ -106,8 +119,28 @@ function init() {
         return v.find(':selected').val();
     }
 
+    $('#floating-box').click((e) => e.stopPropagation());
     width = bind_get("table_width", table_width_changed);
     cycle_mode = bind_get("cycle_mode", cycle_mode_changed);
-
     redrawTables();
+}
+
+function enableFloatingBox(event, cell, supportBubbling) {
+    if (supportBubbling || event.target === event.currentTarget) {
+        cell = event.data;
+        $('#floating-box').html("");
+
+        for(i = 0; i < cell.TimingMax.length; i++) {
+            $('#floating-box').append(cell.TimingMax[i].Type + "<br/>");
+            if(cell.TimingMax[i].Comment !== "") {
+                $('#floating-box').append(cell.TimingMax[i].Comment + "<br/>");
+            }
+        }
+
+        $('#floating-box-container').show();
+    }
+}
+
+function disableFloatingBox() {
+    $('#floating-box-container').hide();
 }
