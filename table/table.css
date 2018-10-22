@@ -47,6 +47,43 @@ th, td {
     padding: 1em 1em 1em 1em;
 }
 
+td.opcode.x16\/lsm {
+    background-color: MediumOrchid;
+}
+
+
+td.opcode.x16\/alu {
+    background-color: LimeGreen;
+}
+
+td.opcode.x8\/rsb {
+    background-color: Cyan;
+}
+
+td.opcode.x8\/alu {
+    background-color: Lime;
+}
+
+td.opcode.control\/misc {
+    background-color: Tomato;
+}
+
+td.opcode.x8\/lsm {
+    background-color: Orchid;
+}
+
+td.opcode.control\/br {
+    background-color: LightSalmon;
+}
+
+td.opcode {
+    background-color: SlateGrey;
+}
+
+td.opcode > pre {
+    display: inline;
+}
+
 #header {
     padding-bottom: 0.5em
 }
