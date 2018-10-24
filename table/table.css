@@ -1,27 +1,35 @@
-table, th, td {
-    font-family: monospace;
-    font-size: small;
+table.opcode, table.opcode>tr>th, table.opcode>tr>td {
     border: 1px solid black;
-    border-collapse: collapse;
 }
 
-table {
+table.opcode {
+    border-collapse: collapse;
     table-layout: fixed;
     width: 100%;
     min-width: 1500px;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: small;
+    margin-bottom: 1em;
 }
 
-th:first-child {
+body {
+    background-color: Snow;
+    font-family: 'KoHo', sans-serif
+}
+
+table.opcode>tr>th:first-child {
     width: 30px;
 }
 
-tr:nth-child(odd) {
+table.opcode>tr:nth-child(odd) {
     background-color: lightgrey;
 }
 
-th, td {
-    align-items: center;
-    justify-content: center;
+table.opcode>tr:nth-child(even) {
+    background-color: white;
+}
+
+table.opcode>tr>td {
     text-align: center;
 }
 
@@ -42,9 +50,10 @@ th, td {
     left: 25%;
     width: 50%;
     height: 60%;
-    background-color: white;
+    background-color: Snow;
     border: 1px solid black;
-    padding: 1em 1em 1em 1em;
+    padding: 1em;
+    font-family: 'Ubuntu Mono', monospace;
 }
 
 td.opcode.x16\/lsm {
