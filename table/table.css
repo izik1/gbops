@@ -8,7 +8,7 @@ table.opcode {
     width: 100%;
     min-width: 1500px;
     font-family: 'Ubuntu Mono', monospace;
-    font-size: small;
+    font-size: 10px;
     margin-bottom: 1em;
 }
 
