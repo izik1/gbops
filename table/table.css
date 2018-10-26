@@ -38,6 +38,7 @@ table.opcode>tr>td {
 }
 
 #floating-box-container {
+    z-index: 1;
     position: fixed;
     top: 0%;
     left: 0%;
