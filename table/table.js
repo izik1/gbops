@@ -86,9 +86,9 @@ function loadTable(id, table) {
         .append(
             get_top_header(width),
             get_rows(width, table).children()
-        ).on("dblclick", "td.opcode", table, (e) => {
+        ).on("dblclick", "td.opcode:not(.hidden)", table, (e) => {
             if (e.target === e.currentTarget) enableFloatingBox($(e.target), e.data);
-        }).on("click", "td.opcode", table, (e) => {
+        }).on("click", "td.opcode:not(.hidden)", table, (e) => {
             if ((!macOS && e.ctrlKey) || (macOS && e.metaKey)) enableFloatingBox($(e.target), e.data);
         })
 }
