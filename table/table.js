@@ -60,7 +60,7 @@ function redrawTables() {
     let new_cbprefixed = loadTable('cbprefixed');
 
     if (new_unprefixed && new_cbprefixed) {
-        $('input[name="search_box"]').trigger('keyup');
+        $('input[name="search-box"]').trigger('keyup');
         $('table.opcode').hide();
         new_unprefixed.show();
         new_cbprefixed.show();
@@ -72,7 +72,7 @@ function redrawTables() {
 
     $('table.opcode').hide();
     $('body').append(new_unprefixed).append(new_cbprefixed);
-    $('input[name="search_box"]').trigger('keyup');
+    $('input[name="search-box"]').trigger('keyup');
 }
 
 function loadTable(id, table) {
@@ -134,9 +134,9 @@ function parseIntFromPrefixedString(num) {
     let radix = 10;
     if (num.length > 2) {
         switch (num[1].toUpperCase()) {
-            case "X": radix = 16;
-            case "O": radix = 8;
-            case "B": radix = 2;
+            case "X": radix = 16; break;
+            case "O": radix = 8; break;
+            case "B": radix = 2; break;
         }
     }
 
@@ -181,38 +181,12 @@ class ParsedSearch {
         }
     }
 
-    exec(opcode, opcodeNumber) {
+    execOp(opcode, opcodeNumber, defaultRet) {
+        this.ty === "prop" ? defaultRet : this.exec(opcode, opcodeNumber)
+    }
+
+    eval(opcode, opcodeNumber) {
         switch (this.ty) {
-            case "block":
-                for (let node of this.val) {
-                    if (!node.exec(opcode, opcodeNumber)) return false;
-                }
-
-                return true;
-            case "keyword": {
-                if (this.val.val === "and") {
-                    return this.val.left.exec(opcode, opcodeNumber) && this.val.right.exec(opcode, opcodeNumber);
-                }
-
-                if (this.val.val === "or") {
-                    return this.val.left.exec(opcode, opcodeNumber) || this.val.right.exec(opcode, opcodeNumber);
-                }
-
-                throw new Error("error made it past validation!!!");
-            }
-
-            case "operator": {
-                const lhs = this.val.left.exec(opcode, opcodeNumber);
-                const rhs = this.val.right.exec(opcode, opcodeNumber);
-                switch (this.val.val) {
-                    case "<": return lhs < rhs;
-                    case "<=": return lhs <= rhs;
-                    case "=": return this.val.right.ty == "str" ? lhs.includes(rhs) : lhs === rhs;
-                    case ">=": return lhs >= rhs;
-                    case ">": return lhs > rhs;
-                }
-            }
-
             case "number": return parseIntFromPrefixedString(this.val);
             case "str": return this.val;
             case "prop": {
@@ -230,7 +204,43 @@ class ParsedSearch {
                 }
             }
 
-            default: throw new Error(`unexpected ty: "${this.ty}"`);
+            default: throw new Error(`unexpected primitive type in search: ${this.ty}`)
+        }
+    }
+
+    exec(opcode, opcodeNumber, defaultTrue) {
+        switch (this.ty) {
+            case "block":
+                for (let node of this.val) if (!node.exec(opcode, opcodeNumber, true)) return false;
+                return true;
+
+            case "keyword": {
+                if (this.val.val === "and") {
+                    return this.val.left.exec(opcode, opcodeNumber, true) && this.val.right.exec(opcode, opcodeNumber, true);
+                }
+
+                if (this.val.val === "or") {
+                    return this.val.left.exec(opcode, opcodeNumber, true) || this.val.right.exec(opcode, opcodeNumber, true);
+                }
+
+                throw new Error("error made it past validation!!!");
+            }
+
+            case "operator": {
+                const lhs = this.val.left.eval(opcode, opcodeNumber);
+                const rhs = this.val.right.eval(opcode, opcodeNumber);
+                switch (this.val.val) {
+                    case "<": return lhs < rhs;
+                    case "<=": return lhs <= rhs;
+                    case "=": return this.val.right.ty === "str" ? lhs.toUpperCase().includes(rhs.toUpperCase()) : lhs === rhs;
+                    case ">=": return lhs >= rhs;
+                    case ">": return lhs > rhs;
+                }
+            }
+
+            default:
+                if (!defaultTrue) throw new Error(`unexpected ty: "${this.ty}"`);
+                else return true;
         }
     }
 }
@@ -307,7 +317,7 @@ function runOpcodeSearch(str, opcode, opcodeNumber) {
 
 function propSupportsCompare(prop, compare, rhs) {
     switch (prop.val) {
-        case "name": return ['<', '<=', '=', '=>', '>'].indexOf(compare) > 0 && rhs.ty === "str";
+        case "name": return ['<', '<=', '=', '>=', '>'].indexOf(compare) > 0 && rhs.ty === "str";
         case "#":
         case "num":
         case "number":
@@ -315,7 +325,7 @@ function propSupportsCompare(prop, compare, rhs) {
         case "op":
         case "len":
         case "length":
-            return ['<', '<=', '=', '=>', '>'].indexOf(compare) > 0 && rhs.ty === "number";
+            return ['<', '<=', '=', '>=', '>'].indexOf(compare) > 0 && rhs.ty === "number";
         default: throw new Error(`unexpected prop .${prop.val}`);
     }
 }
@@ -363,7 +373,7 @@ $(document).ready(() => {
             if (runOpcodeSearch(e.target.value, tables.CBPrefixed[i], i)) CBPrefixedNode.removeClass('hidden');
             else CBPrefixedNode.addClass('hidden');
         }
-    })
+    }).trigger('keyup');
 
     // Don't use `getJson()` because it complains locally about the mimetype.
     $.ajax({

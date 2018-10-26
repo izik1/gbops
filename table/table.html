@@ -43,12 +43,12 @@
                 1 4t <br />
                 Z&#8203;0&#8203;0&#8203;0<br />
             </div> <br />
-            <h5>What's a 't'?</h5>
+            <h5>What's a <code>t</code>?</h5>
             <p>
-                The 't' in the example instruction means a "T-Cycle" which is one of the two ways to
+                The <code>t</code> in the example instruction means a "T-Cycle" which is one of the two ways to
                 count the number of clock ticks on the Game Boy.
                 A T-Cycle is 1 Game Boy cpu clock tick. (t=tick)
-                The other way is with "M-Cycles" (machine cycles) which are just t/4 (4t=1m).
+                The other way is with "M-Cycles" (machine cycles) which are just <code>t/4</code> (4t=1m).
                 [wip: Description of <b>why</b> to use M-cycles goes here.]
                 However more complex timing uses T-Cycles. This opcode table allows you to switch between using either
                 or both.
@@ -65,8 +65,18 @@
             <h5>How does the search bar work?</h5>
             <p>
                 The search bar works by comparing properties of an opcode to a given number&#47;string.<br />
-                The currently supported properties are length|len, name and number|num|opcode|op|&#35;.<br />
-                The currently supported comparisions are &lt;, &lt;=, =, &gt; and &gt;=.
+                The currently supported properties are <code>length|len</code>, <code>name</code> and <code>number|num|opcode|op|&#35;</code>.<br />
+                The currently supported comparisions are <code>&lt;</code>, <code>&lt;=</code>, <code>=</code>, <code>&gt;=</code>
+                and <code>&gt;</code>.<br />
+                Numbers can be given in bases 16-10-8 and 2.
+            </p>
+            <h5>Some search examples:</h5>
+            <p>
+                <code>.name="LD"</code>, this searches for all opcodes containing "LD" in their name.<br />
+                <code>.name="LD" .len=2</code>, this searches for opcodes all containing "LD" in their name and a
+                length of 2. <br />
+                <code>.name="LD" .len=2 or .opcode=0x76</code>, same as the previous but it <b>also</b> shows all
+                opcodes with index 0x76, which are <code>HALT</code> and <code>BIT 6,(HL)</code>
             </p>
             <h5>Help!!! Why isn't the search bar working!?</h5>
             <p>The search bar is currently a huge WIP and will have tons of bugs, if you find one please report it to
