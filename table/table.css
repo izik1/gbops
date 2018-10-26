@@ -21,12 +21,16 @@ table.opcode>tr>th:first-child {
     width: 30px;
 }
 
-table.opcode>tr:nth-child(odd) {
+table.opcode>tr:nth-child(odd)>th {
     background-color: lightgrey;
 }
 
-table.opcode>tr:nth-child(even) {
+table.opcode>tr:nth-child(even)>th {
     background-color: white;
+}
+
+table.opcode>tr {
+    background-color: black;
 }
 
 table.opcode>tr>td {
@@ -87,6 +91,10 @@ td.opcode.control\/br {
 
 td.opcode {
     background-color: SlateGrey;
+}
+
+td.opcode.hidden {
+    opacity: 0;
 }
 
 td.opcode > pre {
