@@ -317,7 +317,7 @@ function runOpcodeSearch(str, opcode, opcodeNumber) {
 
 function propSupportsCompare(prop, compare, rhs) {
     switch (prop.val) {
-        case "name": return ['<', '<=', '=', '>=', '>'].indexOf(compare) > 0 && rhs.ty === "str";
+        case "name": return ['<', '<=', '=', '>=', '>'].includes(compare) && rhs.ty === "str";
         case "#":
         case "num":
         case "number":
@@ -325,7 +325,7 @@ function propSupportsCompare(prop, compare, rhs) {
         case "op":
         case "len":
         case "length":
-            return ['<', '<=', '=', '>=', '>'].indexOf(compare) > 0 && rhs.ty === "number";
+            return ['<', '<=', '=', '>=', '>'].includes(compare) && rhs.ty === "number";
         default: throw new Error(`unexpected prop .${prop.val}`);
     }
 }
