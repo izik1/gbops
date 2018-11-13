@@ -5310,7 +5310,7 @@
       ]
     },
     {
-      "Name": "JP (HL)",
+      "Name": "JP HL",
       "Group": "control/br",
       "TCyclesBranch": 4,
       "TCyclesNoBranch": 4,
