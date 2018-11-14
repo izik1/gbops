@@ -152,7 +152,7 @@ class ParsedSearch {
             this.prop_ty = null;
             if (["number", "num", "opcode", "op", "len", "length"].includes(this.val)) {
                 this.prop_ty = "number";
-            } else if (["name"].includes(this.val)) {
+            } else if (["name", "group"].includes(this.val)) {
                 this.prop_ty = "str";
             }
 
@@ -213,6 +213,7 @@ class ParsedSearch {
                     case "#":
                         return opcodeNumber;
                     case "name": return opcode.Name !== "UNUSED" ? opcode.Name : "";
+                    case "group": return opcode.Name !== "UNUSED" ? opcode.Group : "";
                     case "length":
                     case "len": return opcode.Name !== "UNUSED" ? opcode.Length : null;
                     default: throw new Error(`unregistered prop: ${this.val}`);
@@ -264,7 +265,7 @@ function parseOpcodeSearch(str) {
     let strRegex = /^"([^"]*)"/;
     let keywordRegex = /^(and|or)\b/;
     let operatorRegex = /^(<=|>=|=|<|>)/;
-    let propRegex = /^\.((?:number|num|name|opcode|op|length|len)\b|#)/;
+    let propRegex = /^\.((?:number|num|name|opcode|op|length|len|group)\b|#)/;
     let numberRegex = /^(0x[\da-f]{1,2}|0o[0-8]{1,3}|(?:0b[01]{1,8})|(?:[1-9]\d{0,2}|\d(?!\d)))\b/i;
     let result = {
         r: new ParsedSearch("block", []), next_op: null, push: function (val) {
