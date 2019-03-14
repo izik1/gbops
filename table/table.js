@@ -86,11 +86,9 @@ function loadTable(id, table) {
         .append(
             get_top_header(width),
             get_rows(width, table).children()
-        ).on("dblclick", "td.opcode:not(.hidden)", table, (e) => {
-            if (e.target === e.currentTarget) enableFloatingBox($(e.target), e.data);
-        }).on("click", "td.opcode:not(.hidden)", table, (e) => {
-            if ((!macOS && e.ctrlKey) || (macOS && e.metaKey)) enableFloatingBox($(e.target), e.data);
-        })
+        ).on("click", "td.opcode:not(.hidden)", table, (e) => {
+            enableFloatingBox($(e.currentTarget), e.data);
+        });
 }
 
 function generateAdvancedTiming(cell) {
@@ -98,7 +96,6 @@ function generateAdvancedTiming(cell) {
 
     function generate(timing_points, tcycles, header_text) {
         container.append($(`<b>${header_text}:</b> (${cycle_timing(tcycles, tcycles)})<br>`));
-
         for (let timing_point of timing_points) {
             container.append(timing_point.Type, '<br>', timing_point.Comment, '<br>');
         }
