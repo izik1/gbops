@@ -39,7 +39,7 @@ table.opcode>tr {
 
 table.opcode>tr>td {
     text-align: center;
-    padding: 8px;
+    padding: 0px;
 }
 
 #floating-box-container {
@@ -66,32 +66,66 @@ table.opcode>tr>td {
     font-family: 'Ubuntu Mono', monospace;
 }
 
+td.opcode.x16\/lsm > div {
+    background-color: rgba(186, 85, 211, 0.3);
+}
+
 td.opcode.x16\/lsm::before {
     background-color: MediumOrchid;
+}
+
+td.opcode.x16\/alu > div {
+    background-color: rgba(50, 205, 50, 0.3);
 }
 
 td.opcode.x16\/alu::before {
     background-color: LimeGreen;
 }
 
+td.opcode.x8\/rsb > div {
+    background-color: rgba(0, 255, 255, 0.3);
+}
+
 td.opcode.x8\/rsb::before {
     background-color: cyan;
 }
 
+td.opcode.x8\/alu > div {
+    background-color: rgba(0, 255, 0, 0.3);
+}
+
+
 td.opcode.x8\/alu::before {
     background-color: Lime;
+}
+
+td.opcode.control\/misc > div {
+    background-color: rgba(255, 79, 91, 0.3);
 }
 
 td.opcode.control\/misc::before {
     background-color: Tomato;
 }
 
+td.opcode.x8\/lsm > div {
+    background-color: rgba(218, 112, 214, 0.3);
+}
+
 td.opcode.x8\/lsm::before {
     background-color: Orchid;
 }
 
+td.opcode.control\/br > div {
+    background-color: rgba(255, 160, 122, 0.3);
+}
+
 td.opcode.control\/br::before {
     background-color: LightSalmon;
+}
+
+td.opcode.unused {
+    background-color: #c8cdd1;
+    /* background-color: rgba(112, 128, 144, 0.3); */
 }
 
 td.opcode {
@@ -118,11 +152,15 @@ td.opcode::before {
 
 td.opcode.hidden {
     visibility: hidden;
-    background-color: black;
-    border-color: black;
 }
 
-td.opcode > pre {
+td.opcode > div {
+    /* height:100%;
+    width:100%; */
+    padding: 8px;
+}
+
+td.opcode pre {
     display: inline;
 }
 
