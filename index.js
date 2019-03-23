@@ -1,10 +1,10 @@
+import tables from './dmgops.json'
+
 'use strict';
 
 var cycle_mode = null;
 
 var width = null;
-
-var tables = null;
 
 var macOS = false;
 
@@ -158,10 +158,6 @@ function enableFloatingBox(target, table) {
         .append($('<div class="timing-column"/>').append(generateAdvancedTiming(cell)));
     
     $('#floating-box-container').show();
-}
-
-function disableFloatingBox() {
-    $('#floating-box-container').hide();
 }
 
 function parseIntFromPrefixedString(num) {
@@ -401,7 +397,9 @@ $(document).ready(() => {
     width = bind_get("table_width", e => width = e.target.value);
     cycle_mode = bind_get("cycle_mode", e => cycle_mode = e.target.value);
     macOS = navigator.appVersion.indexOf("Mac") != -1;
-
+    
+    redrawTables();
+    
     $('input[name="search-box"]').on('keyup', e => {
         if (!tables) return;
         for (let i = 0; i < 0x100; i++) {
@@ -415,16 +413,4 @@ $(document).ready(() => {
             else CBPrefixedNode.addClass('hidden');
         }
     }).trigger('keyup');
-
-    // Don't use `getJson()` because it complains locally about the mimetype.
-    $.ajax({
-        dataType: "json",
-        url: "dmgops.json",
-        data: null,
-        mimeType: "application/json",
-        success: ops => {
-            tables = ops;
-            redrawTables();
-        }
-    })
 })

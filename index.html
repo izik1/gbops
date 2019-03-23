@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Zachery Gyurkovitz">
+    <meta name="description" content="The most accurate Game Boy opcode table on the market">
+    <meta lang="en">
+    <meta name="keywords" content="Game Boy, GameBoy, GB, opcode, table, map, emulation, emulation development, emudev, gbdev">
+    <title>gbops - The Game Boy opcode table</title>
+    <link rel="preload" href="dmgops.json" as="fetch" type="application/json">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css?family=KoHo|Ubuntu+Mono" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <details style="padding: 8px;">
+            <summary>Help</summary>
+            <h5>Instruction format: </h5>
+
+            <div style="
+            display: inline-block;
+            border:1px solid black;
+            font-family: 'Ubuntu Mono', monospace;
+            font-size: small;
+            text-align:center;
+            padding: 5px 5px 5px 5px">
+                MNEMONIC ARGS<br />
+                LENGTH DURATION<br />
+                AFFECTED FLAGS<br />
+            </div> <br />
+
+            <h5>Example instruction: </h5>
+
+            <div style="
+            display: inline-block;
+            border:1px solid black;
+            font-family: 'Ubuntu Mono', monospace;
+            font-size: small;
+            min-width: 96px;
+            text-align:center">
+
+                XOR A,A <br />
+                1 4t <br />
+                Z&#8203;0&#8203;0&#8203;0<br />
+            </div> <br />
+            <h5>What's a <code>t</code>?</h5>
+            <p>
+                The <code>t</code> in the example instruction means a "T-Cycle" which is one of the two ways to
+                count the number of clock ticks on the Game Boy.
+                A T-Cycle is 1 Game Boy cpu clock tick. (t=tick)
+                The other way is with "M-Cycles" (machine cycles) which are just <code>t/4</code> (4t=1m).
+                [wip: Description of <b>why</b> to use M-cycles goes here.]
+                However more complex timing uses T-Cycles. This opcode table allows you to switch between using either
+                or both.
+            </p>
+            <h5>Flags?</h5>
+            <p>
+                The names for the flags that this opcode table uses are:<br />
+                Z = "Zero", N = "Negative", H = "Half carry" and C = "Carry" (always in that order)<br />
+                An instruction can do various things to the flags such as always set (1),
+                always reset (0),
+                set or reset depending on the result of the instrucion (letter for flag)
+                or do nothing (-)
+            </p>
+            <h5>How does the search bar work?</h5>
+            <p>
+                The search bar works by comparing properties of an opcode to a given number&#47;string.<br />
+                The currently supported properties are <code>length|len</code>, <code>name</code> and <code>number|num|opcode|op|&#35;</code>.<br />
+                The currently supported comparisions are <code>&lt;</code>, <code>&lt;=</code>, <code>=</code>, <code>&gt;=</code>
+                and <code>&gt;</code>.<br />
+                Numbers can be given in bases 16-10-8 and 2.
+            </p>
+            <h5>Some search examples:</h5>
+            <p>
+                <code>.name="LD"</code>, this searches for all opcodes containing "LD" in their name.<br />
+                <code>.name="LD" .len=2</code>, this searches for opcodes all containing "LD" in their name and a
+                length of 2. <br />
+                <code>.name="LD" .len=2 or .opcode=0x76</code>, same as the previous but it <b>also</b> shows all
+                opcodes with index 0x76, which are <code>HALT</code> and <code>BIT 6,(HL)</code>
+            </p>
+            <h5>Help!!! Why isn't the search bar working!?</h5>
+            <p>The search bar is currently a huge WIP and will have tons of bugs, if you find one please report it to
+                <a href="https://github.com/izik1/gbops/issues">The Issue Tracker</a></p>
+        </details>
+
+        <label style="padding: 8px;">
+            Table Width:
+            <select name="table_width">
+                <option value="8">8x</option>
+                <option value="16" selected>16x</option>
+            </select>
+        </label>
+        <label style="padding: 8px;">
+            Cycle mode:
+            <select name="cycle_mode">
+                <option value="t" selected>t</option>
+                <option value="m">m</option>
+                <option value="both">both</option>
+            </select>
+        </label>
+        <label style="padding: 8px;">
+            Search:
+            <input type="search" name="search-box" />
+        </label>
+        <div style="float: right">
+            If you find any bugs or something that seems out of place file an <a href="https://github.com/izik1/gbops/issues">issue</a>.
+        </div>
+    </div>
+    <div id="floating-box-container" style="display: none;" onClick="this.style.display = 'none';">
+        <div id="floating-box" class="floating-grid-container"></div>
+    </div>
+</body>
+
+</html>
