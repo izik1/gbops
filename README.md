@@ -13,4 +13,4 @@ Create the most accurate and descriptive Gameboy (DMG) Opcode table (so far™)
 Nothing here yet.
 
 # gbops
-You may find a html version [here](https://izik1.github.io/index.html).
+You may find a html version [here](https://izik1.github.io/gbops/index.html).
