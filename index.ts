@@ -10,7 +10,7 @@ import { runOpcodeSearch } from "./search";
 var cycle_mode: string | null = null;
 
 function create_op(op: Opcode) {
-    if(op.Name === "UNUSED") return $(`<td class="opcode ${op.Group}"><div/></td>`);
+    if(op.Name === "UNUSED") return $(`<td class="opcode ${op.Group}"></td>`);
     else return $("<td/>").append($("<div/>").append($("<pre/>").html(
         `${op.Name}\n` +
         `${op.Length} ${op_timing(op)}\n` +
@@ -21,7 +21,7 @@ function create_op(op: Opcode) {
 function get_top_header(width: number) {
     const row = $('<tr><th>--</th></tr>')
     for (let i = 0; i < width; i++) {
-        row.append($('<th/>').html('+' + i.toString(16).toUpperCase()).addClass("header"));
+        row.append(`<th>${'+' + i.toString(16).toUpperCase()}</th>`);
     }
 
     return row;
@@ -146,7 +146,7 @@ function generateAdvancedFlags(flags: Flags) {
 function enableFloatingBox(target: JQuery<any>, table: Opcode[]) {
     // kind of a hack, calculate the 2-dim index of the cell.
     const x = target.index() - 1;
-    const width = target.parent().children().length - 1;
+    const width = target.siblings().length - 1;
     const y = target.parent().index() - 1;
 
     const cell = table[y * width + x];
@@ -159,7 +159,7 @@ function enableFloatingBox(target: JQuery<any>, table: Opcode[]) {
             .append("<br>")
             .append(`<strong>Group:</strong> ${cell.Group}`)
         )
-        .append($('<div class="timing-column"/>').append(generateAdvancedTiming(cell)));
+        .append(`<div class="timing-column">${generateAdvancedTiming(cell)}</div>`);
     
     $('#floating-box-container').show();
 }
@@ -178,17 +178,17 @@ $(document).ready(() => {
 
     $('input[name="search-box"]').keyup(e => {
         if (!tables) return;
-        for (let i = 0; i < 0x100; i++) {
+        for (let i: number = 0; i < 0x100; i++) {
             const width = <number>$('select[name="table_width"]').find(':selected').val();
 
-            let unprefixedNode = $($(`#unprefixed-${width}-${cycle_mode}`).children()[Math.floor((i / width) + 1)].children[(i % width) + 1]);
-            let CBPrefixedNode = $($(`#cbprefixed-${width}-${cycle_mode}`).children()[Math.floor((i / width) + 1)].children[(i % width) + 1]);
+            let unprefixedNode = $(`#unprefixed-${width}-${cycle_mode}`).children()[Math.floor((i / width) + 1)].children[(i % width) + 1];
+            let CBPrefixedNode = $(`#cbprefixed-${width}-${cycle_mode}`).children()[Math.floor((i / width) + 1)].children[(i % width) + 1];
 
-            if (runOpcodeSearch(e.target.value, tables.Unprefixed[i], i)) unprefixedNode.removeClass('hidden');
-            else unprefixedNode.addClass('hidden');
+            if (runOpcodeSearch(e.target.value, tables.Unprefixed[i], i)) unprefixedNode.classList.remove('hidden');
+            else unprefixedNode.classList.add('hidden');
 
-            if (runOpcodeSearch(e.target.value, tables.CBPrefixed[i], i)) CBPrefixedNode.removeClass('hidden');
-            else CBPrefixedNode.addClass('hidden');
+            if (runOpcodeSearch(e.target.value, tables.CBPrefixed[i], i)) CBPrefixedNode.classList.remove('hidden');
+            else CBPrefixedNode.classList.add('hidden');
         }
     }).trigger('keyup');
 })
