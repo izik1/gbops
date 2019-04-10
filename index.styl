@@ -1,0 +1,148 @@
+table.opcode 
+    border-collapse: collapse
+    table-layout: fixed
+    width: 100%
+    min-width: 10em * 15
+    font-family: 'Ubuntu Mono', monospace
+    font-size: 10px
+    margin-bottom: 1em
+    border: 0.1em solid black
+    
+    >tr
+        background-color: black
+        &:nth-child(odd)>th
+            background-color: lightgrey
+        &:nth-child(even)>th
+            background-color: rgb(245, 245, 245)
+        >th
+            padding: 0.8em
+            border: 0.1em solid black
+            &:first-child
+                width: 3em
+        >td
+            text-align: center
+            padding: 0px
+         
+
+:root {
+    background-color: snow
+    font-family: 'KoHo', sans-serif
+    font-size: 15px
+}
+
+#floating-box-container {
+    z-index: 1
+    position: fixed
+    top: 0%
+    left: 0%
+    width: 100%
+    height: 100%
+    background-color: darkgrey
+    background-color: rgba(169,169,169, .6)
+
+}
+
+#floating-box {
+    position: fixed
+    top: 20%
+    left: 25%
+    width: 50%
+    height: 60%
+    background-color: snow
+    border: 1px solid black
+    padding: 0px
+    font-family: 'Ubuntu Mono', monospace
+    overflow: auto
+}
+
+opcode-coloring(color)
+    > div
+        background-color: color - rgba(0, 0, 0, 0.7)
+    &::before
+        background-color: color
+
+td.opcode
+    border: 0.1em solid black
+    background-color:  rgb(237,237,237)
+    position: relative
+    background-clip: padding-box
+    -webkit-user-select: none
+
+    &::before
+        position: absolute
+        left: 0
+        top: 0
+        bottom: 0
+        width: 0.7em
+        background-color: slategray
+        content: ""
+    
+    pre
+        display inline
+    > div
+        padding: 0.8em
+        
+    &.x16\\/lsm
+        opcode-coloring(mediumorchid)
+    &.x16\\/alu
+        opcode-coloring(limegreen)
+    &.x8\\/rsb
+        opcode-coloring(cyan)
+    &.x8\\/alu
+        opcode-coloring(lime)
+    &.control\\/misc
+        opcode-coloring(tomato)
+    &.x8\\/lsm
+        opcode-coloring(orchid)
+    &.control\\/br
+        opcode-coloring(lightsalmon)
+
+td.opcode.unused
+    background-color: #c8cdd1
+
+td.opcode:not(.unused):hover
+    background-color: rgb(220, 220, 220)
+
+
+td.opcode.hidden
+    visibility: hidden
+  
+code
+    background-color: rgb(230, 230, 230)
+    font-family: 'Ubuntu Mono', monospace
+
+#header {
+    padding-left: 1em
+    padding-right: 1em
+    padding-bottom: 0.5em
+}
+
+.floating-grid-container
+    display: grid
+    grid-template-columns: 2fr auto 2fr
+    grid-template-rows: auto auto
+    padding: 8px
+
+.name
+    grid-area: 1 / 2
+    justify-self: center
+    text-align: center
+    padding: 0.5em
+  
+.data-column
+    justify-self: start
+    grid-area: 2 / 1
+    padding: 0.5em
+  
+.timing-column
+    justify-self: end
+    grid-area: 2 / 3
+    padding: 0.5em
+  
+.flag-table
+    caption
+        padding-top: 1em 
+    th
+        text-align: left
+        padding-right: 0.5em
+  
