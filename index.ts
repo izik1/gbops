@@ -1,11 +1,11 @@
+'use strict';
+
 import _tables from './dmgops.json'
 import { Opcode, Flags, OpcodeTable } from "./opcode"
 
 const tables: OpcodeTable = _tables;
 
 import { runOpcodeSearch } from "./search";
-
-'use strict';
 
 var cycle_mode: string | null = null;
 
@@ -149,8 +149,6 @@ function enableFloatingBox(target: JQuery<any>, table: Opcode[]) {
     const width = target.siblings().length;
     const y = target.parent().index() - 1;
 
-    console.log(`x: ${x} width: ${width} y: ${y}`)
-
     const cell = table[y * width + x];
 
     if (cell.Name === "UNUSED") return;
@@ -182,14 +180,16 @@ $(document).ready(() => {
         if (!tables) return;
         for (let i: number = 0; i < 0x100; i++) {
             const width = <number>$('select[name="table_width"]').find(':selected').val();
+            const searchString = (<HTMLSelectElement>e.target).value;
 
             let unprefixedNode = $(`#unprefixed-${width}-${cycle_mode}`).children()[Math.floor((i / width) + 1)].children[(i % width) + 1];
             let CBPrefixedNode = $(`#cbprefixed-${width}-${cycle_mode}`).children()[Math.floor((i / width) + 1)].children[(i % width) + 1];
 
-            if (runOpcodeSearch(e.target.value, tables.Unprefixed[i], i)) unprefixedNode.classList.remove('hidden');
+
+            if (runOpcodeSearch(searchString, tables.Unprefixed[i], i)) unprefixedNode.classList.remove('hidden');
             else unprefixedNode.classList.add('hidden');
 
-            if (runOpcodeSearch(e.target.value, tables.CBPrefixed[i], i)) CBPrefixedNode.classList.remove('hidden');
+            if (runOpcodeSearch(searchString, tables.CBPrefixed[i], i)) CBPrefixedNode.classList.remove('hidden');
             else CBPrefixedNode.classList.add('hidden');
         }
     }).trigger('keyup');
