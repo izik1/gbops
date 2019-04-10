@@ -1369,7 +1369,7 @@
         },
         {
           "Type": "read",
-          "Comment": "(BC--)->A"
+          "Comment": "(HL--)->A"
         }
       ]
     },
