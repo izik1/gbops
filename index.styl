@@ -7,12 +7,16 @@ table.opcode
     font-size: 10px
     margin-bottom: 1em
     border: 0.1em solid black
-    
+
+    caption
+        font-size: 15px
+        text-align: left;
+
     >tr
         background-color: black
-        &:nth-child(odd)>th
+        &:nth-of-type(odd)>th
             background-color: lightgrey
-        &:nth-child(even)>th
+        &:nth-of-type(even)>th
             background-color: rgb(245, 245, 245)
         >th
             padding: 0.8em
