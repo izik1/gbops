@@ -135,7 +135,7 @@ function getFlagText(flag: string) {
         case "-": return "unmodified";
         case "0": return "unset";
         case "1": return "set";
-        default: return "dependent on operation";
+        default: return "dependent";
     }
 }
 
