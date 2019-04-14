@@ -28,12 +28,12 @@ function get_top_header(width: number) {
         row.append(`<th>${'+' + i.toString(16).toUpperCase()}</th>`);
     }
 
-    return row;
+    return $("<thead>").append(row);
 }
 
 function get_rows(step: number, table_data: Opcode[]) {
     const get_prefix = (row: number) => paddedOpcode(row * step) + '+';
-    const rows = $('<div/>');
+    const rows = $('<tbody/>');
 
     for (let row_num = 0; row_num < 0x100 / step; row_num++) {
         const row = $('<tr/>').append(`<th>${get_prefix(row_num)}</th>`).appendTo(rows);
@@ -84,12 +84,11 @@ function loadTable(id: string, width: number, table: Opcode[]): JQuery<HTMLEleme
         .attr('id', `${id}-${width}-${cycle_mode}`)
         .addClass('opcode')
         .append(`<caption>${id}:</caption>`)
-        .append(
-            get_top_header(width),
-            get_rows(width, table).children()
-        ).on("click", "td.opcode:not(.hidden)", table, (e) => {
+        .append(get_top_header(width))
+        .append(get_rows(width, table)
+        .on("click", "td.opcode:not(.hidden)", table, (e) => {
             enableFloatingBox($(e.currentTarget), e.data);
-       });
+       }));
 }
 
 function loadCachedTable(id: string, width: number): JQuery<HTMLElement> | null {
@@ -152,7 +151,7 @@ function enableFloatingBox(target: JQuery<any>, table: Opcode[]) {
     // kind of a hack, calculate the 2-dim index of the cell.
     const x = target.index() - 1;
     const width = target.siblings().length;
-    const y = target.parent().index() - 1;
+    const y = target.parent().index();
 
     const index = y * width + x;
     const cell = table[index];
@@ -188,8 +187,8 @@ $(document).ready(() => {
             const width = <number>$('select[name="table_width"]').find(':selected').val();
             const searchString = (<HTMLSelectElement>e.target).value;
 
-            let unprefixedNode = $(`#unprefixed-${width}-${cycle_mode}`).children()[Math.floor((i / width) + 1)].children[(i % width) + 1];
-            let CBPrefixedNode = $(`#cbprefixed-${width}-${cycle_mode}`).children()[Math.floor((i / width) + 1)].children[(i % width) + 1];
+            let unprefixedNode = $(`#unprefixed-${width}-${cycle_mode} tbody`).children()[Math.floor((i / width))].children[(i % width) + 1];
+            let CBPrefixedNode = $(`#cbprefixed-${width}-${cycle_mode} tbody`).children()[Math.floor((i / width))].children[(i % width) + 1];
 
 
             if (runOpcodeSearch(searchString, tables.Unprefixed[i], i)) unprefixedNode.classList.remove('hidden');
