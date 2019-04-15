@@ -104,7 +104,7 @@ class ParsedSearch {
         }
     }
 
-    exec(opcode: Opcode, opcodeNumber: number, defaultTrue: boolean=false) {
+    exec(opcode: Opcode, opcodeNumber: number, defaultTrue: boolean = false) {
         switch (this.ty) {
             case "block":
                 for (let node of this.val) if (!node.exec(opcode, opcodeNumber, true)) return false;
@@ -141,48 +141,48 @@ class ParsedSearch {
     }
 }
 
-    function lexOpcodeSearch(offset: number, str: string, result: any) {
-        let strMatches = strRegex.exec(str.substr(offset));
-        if (strMatches) {
-            result.push(new ParsedSearch("str", strMatches[1]));
-            return strMatches[0].length;
-        }
-
-        let keywordMatches = keywordRegex.exec(str.substr(offset));
-        if (keywordMatches) {
-            result.r = new ParsedSearch("keyword", { val: keywordMatches[1], left: result.r, right: new ParsedSearch("block", []) })
-            return keywordMatches[0].length;
-        }
-
-        let operatorMatches = operatorRegex.exec(str.substr(offset));
-        if (operatorMatches) {
-            if (result.r.length == 0 || result.next_op !== null) throw new Error();
-
-            result.next_op = new ParsedSearch("operator", { val: operatorMatches[1], left: result.r.pop(), right: null });
-            return operatorMatches[0].length;
-        }
-
-        let propMatches = propRegex.exec(str.substr(offset));
-        if (propMatches) {
-            result.push(new ParsedSearch("prop", propMatches[1]));
-            return propMatches[0].length;
-        }
-
-        let numberMatches = numberRegex.exec(str.substr(offset));
-        if (numberMatches) {
-            result.push(new ParsedSearch("number", numberMatches[1]));
-            return numberMatches[0].length;
-        }
-
-        if (str[offset] === " ") {
-            return 1;
-        }
+function lexOpcodeSearch(offset: number, str: string, result: any) {
+    let strMatches = strRegex.exec(str.substr(offset));
+    if (strMatches) {
+        result.push(new ParsedSearch("str", strMatches[1]));
+        return strMatches[0].length;
     }
+
+    let keywordMatches = keywordRegex.exec(str.substr(offset));
+    if (keywordMatches) {
+        result.r = new ParsedSearch("keyword", { val: keywordMatches[1], left: result.r, right: new ParsedSearch("block", []) })
+        return keywordMatches[0].length;
+    }
+
+    let operatorMatches = operatorRegex.exec(str.substr(offset));
+    if (operatorMatches) {
+        if (result.r.length == 0 || result.next_op !== null) throw new Error();
+
+        result.next_op = new ParsedSearch("operator", { val: operatorMatches[1], left: result.r.pop(), right: null });
+        return operatorMatches[0].length;
+    }
+
+    let propMatches = propRegex.exec(str.substr(offset));
+    if (propMatches) {
+        result.push(new ParsedSearch("prop", propMatches[1]));
+        return propMatches[0].length;
+    }
+
+    let numberMatches = numberRegex.exec(str.substr(offset));
+    if (numberMatches) {
+        result.push(new ParsedSearch("number", numberMatches[1]));
+        return numberMatches[0].length;
+    }
+
+    if (str[offset] === " ") {
+        return 1;
+    }
+}
 
 
 function parseOpcodeSearch(str: string) {
     let result = {
-        r: new ParsedSearch("block", []), next_op: null, push: function (val: any) {
+        r: new ParsedSearch("block", []), next_op: null, push: function(val: any) {
             (this.next_op || this.r).push(val);
             this.next_op && this.r.push(this.next_op);
             this.next_op = null;
@@ -200,12 +200,20 @@ function parseOpcodeSearch(str: string) {
 }
 
 export function runOpcodeSearch(str: string, opcode: any, opcodeNumber: number) {
+    return runValidatedOpcodeSearch(fetchOpcodeSearch(str), opcode, opcodeNumber);
+}
+
+export function fetchOpcodeSearch(str: string) {
     let parsed = parseOpcodeSearch(str);
     if (!validateOpcodeSearch(parsed)) {
-        return true;
+        return null;
     }
 
-    return parsed.exec(opcode, opcodeNumber);
+    return parsed;
+}
+
+export function runValidatedOpcodeSearch(search: ParsedSearch | null, opcode: any, opcodeNumber: number) {
+    return search !== null ? search.exec(opcode, opcodeNumber) : true;
 }
 
 function validateOpcodeSearch(parsed: ParsedSearch) {
