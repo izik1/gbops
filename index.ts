@@ -147,11 +147,11 @@ function generateAdvancedTiming(cell: Opcode) {
         header.insertCell().outerHTML = `<th>with branch (${cycle_timing(cell.TCyclesBranch, cell.TCyclesBranch)})</th>`;
     }
 
-    const _tbody = table.createTBody();
+    const tbody = table.createTBody();
 
     if (cell.TimingNoBranch && cell.TimingBranch) {
         for (let i = 0; i < Math.max(cell.TimingNoBranch.length, cell.TimingBranch.length) * 2; i++) {
-            const row = _tbody.insertRow();
+            const row = tbody.insertRow();
 
             if (i % 2 == 0) {
                 const timingNoBranch = cell.TimingNoBranch[i / 2];
@@ -171,7 +171,7 @@ function generateAdvancedTiming(cell: Opcode) {
         let points = cell.TimingNoBranch || cell.TimingBranch;
         if (points) {
             for (let point of points) {
-                const row = _tbody.insertRow();
+                const row = tbody.insertRow();
                 row.insertCell().textContent = point.Type;
                 row.insertCell().textContent = point.Comment;
             }
@@ -244,16 +244,20 @@ function searchBoxKeyUp(searchBox: HTMLSelectElement | null = null) {
 
     if (!tables) return;
 
-    const unprefixedTable = document.getElementById(`#unprefixed-${width}-${cycle_mode} tbody`);
-    const CBPrefixedTable = document.getElementById(`#cbprefixed-${width}-${cycle_mode} tbody`);
+    const unprefixedTable = document.querySelector(`#unprefixed-${width}-${cycle_mode} tbody`);
+    const CBPrefixedTable = document.querySelector(`#cbprefixed-${width}-${cycle_mode} tbody`);
 
+    console.log("?");
     if (unprefixedTable === null || CBPrefixedTable === null) return;
+    console.log("?");
 
     const search = fetchOpcodeSearch(searchString);
+    console.log("?");
 
     for (let i: number = 0; i < 0x100; i++) {
         const unprefixedNode = unprefixedTable.children[Math.floor((i / width))].children[(i % width) + 1];
         const CBPrefixedNode = CBPrefixedTable.children[Math.floor((i / width))].children[(i % width) + 1];
+
 
         if (runValidatedOpcodeSearch(search, tables.Unprefixed[i], i)) unprefixedNode.classList.remove('hidden');
         else unprefixedNode.classList.add('hidden');
