@@ -16,6 +16,13 @@ function paddedOpcode(number: number) {
     return number.toString(16).toUpperCase().padStart(2, '0');
 }
 
+function tableName(type: TableType): string {
+    switch(type) {
+        case 'unprefixed': return 'Unprefixed';
+        case 'cbprefixed': return '0xCB Prefixed';
+    }
+}
+
 function createOp(op: Opcode, index: number, cell: HTMLTableDataCellElement) {
     cell.classList.add('opcode');
     cell.classList.add(...op.Group.replace('/', ' ').split(' '));
@@ -108,7 +115,7 @@ function loadTable(id: TableType, width: number, opcodeTable: Opcode[]): HTMLTab
 
     table.id = `${id}-${width}-${cycleMode}`;
     table.classList.add('opcode');
-    table.createCaption().textContent = id + ":";
+    table.createCaption().textContent = tableName(id) + ":";
 
     getTopHeader(table.createTHead().insertRow(), width);
 
