@@ -16,17 +16,11 @@
 
 <body>
     <div id="header">
-        <details style="padding: 8px;">
+        <details id="help-section">
             <summary>Help</summary>
             <h5>Instruction format: </h5>
 
-            <div style="
-            display: inline-block;
-            border:1px solid black;
-            font-family: 'Ubuntu Mono', monospace;
-            font-size: small;
-            text-align:center;
-            padding: 5px 5px 5px 5px">
+            <div class="sample-instruction">
                 MNEMONIC ARGS<br />
                 LENGTH DURATION<br />
                 AFFECTED FLAGS<br />
@@ -34,14 +28,7 @@
 
             <h5>Example instruction: </h5>
 
-            <div style="
-            display: inline-block;
-            border:1px solid black;
-            font-family: 'Ubuntu Mono', monospace;
-            font-size: small;
-            min-width: 96px;
-            text-align:center">
-
+            <div class="sample-instruction">
                 XOR A,A <br />
                 1 4t <br />
                 Z&#8203;0&#8203;0&#8203;0<br />
@@ -70,7 +57,7 @@
                 <a href="https://github.com/izik1/gbops/issues">The Issue Tracker</a></p>
         </details>
 
-        <details style="padding: 8px;" id="glossary">
+        <details id="glossary">
             <summary>Glossary</summary>
             <dl>
                 <dt>Groups</dt>
@@ -120,27 +107,29 @@
                 </dd>
             </dl>
         </details>
-        <label style="padding: 8px;">
-            Table Width:
-            <select name="table_width">
-                <option value="8">8x</option>
-                <option value="16" selected>16x</option>
-            </select>
-        </label>
-        <label style="padding: 8px;">
-            Cycle mode:
-            <select name="cycle_mode">
-                <option value="t" selected>t</option>
-                <option value="m">m</option>
-                <option value="both">both</option>
-            </select>
-        </label>
-        <div style="display: inline-block;">
-            Poorly implemented, see help for syntax, might fail unexpectedly.<br>
-            <label style="padding: 8px;">
-                Search:
-                <input type="search" name="search-box" />
+        <div id="table-controls">
+            <label>
+                Table Width:
+                <select name="table_width">
+                    <option value="8">8x</option>
+                    <option value="16" selected>16x</option>
+                </select>
             </label>
+            <label>
+                Cycle mode:
+                <select name="cycle_mode">
+                    <option value="t" selected>t</option>
+                    <option value="m">m</option>
+                    <option value="both">both</option>
+                </select>
+            </label>
+            <div style="display: inline-block;">
+                Poorly implemented, see help for syntax, might fail unexpectedly.<br>
+                <label>
+                    Search:
+                    <input type="search" name="search-box" />
+                </label>
+            </div>
         </div>
         <div style="float: right">
             If you find any bugs or something that seems out of place file an <a href="https://github.com/izik1/gbops/issues">issue</a>.
