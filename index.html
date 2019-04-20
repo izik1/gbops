@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html land="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Zachery Gyurkovitz">
     <meta name="description" content="The most accurate Game Boy opcode table on the market">
-    <meta lang="en">
     <meta name="keywords" content="Game Boy, GameBoy, GB, opcode, table, map, emulation, emulation development, emudev, gbdev">
     <title>gbops - The Game Boy opcode table</title>
     <link rel="preload" href="dmgops.json" as="fetch" type="application/json">
@@ -15,7 +14,8 @@
 </head>
 
 <body>
-    <div id="header">
+    <header>
+        <h1>gbops, the most accurate&trade; opcode table for the GB</h1>
         <details id="help-section">
             <summary>Help</summary>
             <h5>Instruction format: </h5>
@@ -134,7 +134,7 @@
         <div style="float: right">
             If you find any bugs or something that seems out of place file an <a href="https://github.com/izik1/gbops/issues">issue</a>.
         </div>
-    </div>
+    </header>
     <div id="floating-box-container" style="display: none;" onClick="this.style.display = 'none';">
         <div id="floating-box" class="floating-grid-container"></div>
     </div>
