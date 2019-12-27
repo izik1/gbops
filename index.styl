@@ -18,22 +18,24 @@ input, select
     border: 1px solid grey
     fill: snow
     flood-color: snow
-    stop-coor: snow
+    stop-color: snow
     border-radius: 2px
     box-shadow: none
 
 table.opcode
     font-family: 'Ubuntu Mono', monospace
-
-
-table.opcode 
     border-collapse: collapse
     table-layout: fixed
     width: 100%
-    min-width: 10em * 15
     margin-bottom: 1em
     border: 1pt solid black
     background-color: black
+
+    &.opcode-8
+        min-width: 5em * 15
+
+    &.opcode-16
+        min-width: 10em * 15
 
     caption
         font-size: 1rem
@@ -49,7 +51,7 @@ table.opcode
         >td
             text-align: center
             padding: 0
-         
+
     thead
         width: 100%
 
@@ -61,7 +63,7 @@ table.opcode
         &:nth-of-type(even)>th
             background-color: lightgrey
         &:nth-of-type(odd)>th
-            background-color: rgb(245, 245, 245)         
+            background-color: rgb(245, 245, 245)
 
 :root {
     background-color: snow
@@ -88,7 +90,7 @@ h1
     width: 80%
     left: 10%
     height: 100%;
-    
+
     @media screen and (min-width: 30em) and (max-width: 48em) {
         width: 24em
         left: 50%
@@ -98,7 +100,7 @@ h1
     @media screen and (min-width: 48em) {
         left: 25%
         width: 50%
-    
+
     }
 
     @media screen and (min-height: 18em) and (max-height: 30em) {
@@ -109,7 +111,7 @@ h1
 
     @media screen and (min-height: 30em) {
         top: 20%
-        height: 60%    
+        height: 60%
     }
 
     background-color: snow
@@ -140,12 +142,12 @@ td.opcode
         width: 0.7em
         background-color: slategray
         content: ""
-    
+
     pre
         display inline
     > div
         padding: 0.8em
-        
+
     &.lsm
         &.x8
             opcode-coloring(lsm-8-color)
@@ -160,23 +162,22 @@ td.opcode
 
     &.x8.rsb
         opcode-coloring(rsb-8-color)
-        
+
     &.control
         &.misc
             opcode-coloring(control-misc-color)
         &.br
             opcode-coloring(control-br-color)
 
-td.opcode.unused
-    background-color: #c8cdd1
+    &.unused
+        background-color: #c8cdd1
 
-td.opcode:not(.unused):hover
-    background-color: rgb(220, 220, 220)
+    &:not(.unused):hover
+        background-color: rgb(220, 220, 220)
 
+    &.hidden
+        visibility: hidden
 
-td.opcode.hidden
-    visibility: hidden
-  
 code
     background-color: rgb(230, 230, 230)
     font-family: 'Ubuntu Mono', monospace
@@ -207,7 +208,7 @@ dl.groups, ul.groups
                 color: lsm-8-color
             &.x16::before
                 color: lsm-16-color
-        
+
         &.alu
             &.x8::before
                 color: alu-8-color
@@ -216,7 +217,7 @@ dl.groups, ul.groups
 
         &.x8.rsb::before
             color: rsb-8-color
-            
+
         &.control
             &.misc::before
                 color: control-br-color
@@ -242,20 +243,20 @@ a
     justify-self: center
     text-align: center
     margin: 0.5em
-  
+
 .data-column
     justify-self: start
     grid-area: 2 / 1
     margin: 0.5em
-  
+
 .timing-column
     justify-self: end
     grid-area: 2 / 2
     margin: 0.5em
-  
+
 .flag-table
     caption
-        margin-top: 1em 
+        margin-top: 1em
     th
         text-align: left
         margin-right: 0.5em

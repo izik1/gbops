@@ -115,6 +115,7 @@ function loadTable(id: TableType, width: number, opcodeTable: Opcode[]): HTMLTab
 
     table.id = `${id}-${width}-${cycleMode}`;
     table.classList.add('opcode');
+    table.classList.add(`opcode-${width}`);
     table.createCaption().textContent = tableName(id) + ":";
 
     getTopHeader(table.createTHead().insertRow(), width);
