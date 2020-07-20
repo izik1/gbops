@@ -1,5 +1,11 @@
 <html>
 <head>
+    <script id="table-tmpl" type="text/x-jsrender">
+        <table id="{{:id}}">
+            {{:~get_top_header(width)}}
+            {{:~get_rows(width, table)}}
+        </table>
+    </script>
     <script id="op-tmpl" type="text/x-jsrender">
         <td style="background-color: {{:~color(Group)}};">
             {{if Name != "UNUSED"}}
@@ -17,11 +23,21 @@
     <script>
         window.onload = () => {
             loadTables();
+            document.querySelector('select[name="table_width"]').onchange = table_width_changed;
             document.querySelector('select[name="cycle_mode"]').onchange = cycle_mode_changed;
         }
     </script>
 </head>
 <body>
+    <label>
+        Table Width:
+        <select name="table_width">
+            <!-- currently doesn't seem to be too useful, so commented. -->
+            <!-- <option value="4">4x</option> -->
+            <option value="8">8x</option>
+            <option value="16" selected>16x</option>
+        </select>
+    </label>
     <label>
         Cycle mode:
         <select name="cycle_mode">

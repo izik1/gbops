@@ -1,11 +1,42 @@
 var cycleMode = 't';
 
-var x16_tables = [];
+var width = 16;
 
-function cycle_mode_changed(event) { // this is done very inefficiently
+var tables = [];
+
+function table_width_changed(event) {
+    width = event.target.value;
+    redrawTables();
+}
+
+function cycle_mode_changed(event) {
     cycleMode = event.target.value;
     redrawTables();
 }
+
+var table_tmpl_helper = {
+    get_top_header: width => {
+        var row = $('<tr class="top"/>').append('<th>--</th>');
+        for (var i = 0; i < width; i++) {
+            row.append($('<th />').html('+' + i.toString(16).toUpperCase()));
+        }
+
+        return row[0].outerHTML;
+    },
+
+    get_rows: (step, table_data) => {
+        var get_prefix = (row, width) => (row * width).toString(16).toUpperCase().padStart(2, '0') + '+';
+        var rows = $('<div/>');
+        for (var row_num = 0; row_num < 0x100 / step; row_num++) {
+            var row = $('<tr />').append(`<th>${get_prefix(row_num, step)}</th>`).appendTo(rows);
+            for (var i = 0; i < step; i++) {
+                row.append($.templates('#op-tmpl').render(table_data[row_num * step + i], op_tmpl_helpers));
+            }
+        }
+
+        return rows.html();
+    }
+};
 
 var op_tmpl_helpers = {
     timing: (min, max) => {
@@ -35,8 +66,8 @@ function redrawTables() {
     var old_unprefixed = $('#unprefixed');
     var old_cbprefixed = $('#cbprefixed');
 
-    var new_unprefixed = loadTable16x('unprefixed');
-    var new_cbprefixed = loadTable16x('cbprefixed');
+    var new_unprefixed = loadTable('unprefixed');
+    var new_cbprefixed = loadTable('cbprefixed');
 
     if (new_unprefixed && new_cbprefixed) {
         old_unprefixed.remove();
@@ -46,8 +77,8 @@ function redrawTables() {
     }
 
     $.getJSON("dmgops.json", null, ops => {
-        if (!new_unprefixed) new_unprefixed = loadTable16x('unprefixed', ops.Unprefixed);
-        if (!new_cbprefixed) new_cbprefixed = loadTable16x('cbprefixed', ops.CBPrefixed);
+        if (!new_unprefixed) new_unprefixed = loadTable('unprefixed', ops.Unprefixed);
+        if (!new_cbprefixed) new_cbprefixed = loadTable('cbprefixed', ops.CBPrefixed);
         old_unprefixed.remove();
         old_cbprefixed.remove();
         $('body').append(new_unprefixed)
@@ -55,27 +86,19 @@ function redrawTables() {
     });
 }
 
-function loadTable16x(id, op_table) {
-    console.log(id);
-    if (!x16_tables[id + '_' + cycleMode]) {
-        if (!op_table) return null;
-        var mapparr = fn => Array.from(Array(0x10).keys()).map(fn);
-        x16_tables[id + '_' + cycleMode] = $("<table />").append($("<tr />").append($("<th>--</th>"),
-            ...mapparr(i => $(`<th>+${i.toString(16)}</th>`))),
-            ...mapparr(i => $("<tr />").append(
-                $(`<th>${i.toString(16)}+</th>`),
-                ...mapparr(j => $.templates("#op-tmpl").render(op_table[i * 0x10 + j], op_tmpl_helpers))
-            ))
-        ).attr('id', id);
+function loadTable(id, table) {
+    if (!tables[width]) tables[width] = [];
+    if (!tables[width][id + '_' + cycleMode]) {
+        if (!table) return null;
+        tables[width][id + '_' + cycleMode] = $($.templates('#table-tmpl').render(
+            { width: width, id: id, table: table },
+            table_tmpl_helper
+        ));
     }
 
-    return x16_tables[id + '_' + cycleMode].clone().attr('id', id);
+    return tables[width][id + '_' + cycleMode].clone().attr('id', id);
 }
 
 function loadTables() {
-    $.getJSON("dmgops.json", null, ops => {
-        var tmp = cycleMode;
-        $('body').append(loadTable16x('unprefixed', ops.Unprefixed))
-            .append(loadTable16x('cbprefixed', ops.CBPrefixed));
-    });
+    redrawTables();
 }
