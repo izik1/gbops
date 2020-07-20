@@ -1,5 +1,16 @@
 var op_tmpl_helpers = {
-    timing: (min, max) => min !== max ? `${min}t-${max}t/${min/4}m-${max/4}m` : `${min}t/${min/4}m`
+    timing: (min, max) => min !== max ? `${min}t-${max}t/${min/4}m-${max/4}m` : `${min}t/${min/4}m`,
+	color: function(group) {
+		switch(group) {
+			case "x16/lsm": return "MediumOrchid"
+			case "x16/alu": return "LimeGreen"
+			case "x8/rsb": return "Cyan"
+			case "x8/alu": return "Lime"
+			case "Control/Misc": return "Tomato"
+			case "x8/lsm": return "Orchid"
+			default: return "inherit"
+		}
+	}
 };
 
 function loadTable16x(op_table) {
