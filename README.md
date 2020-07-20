@@ -18,4 +18,8 @@ Write people's emulators for them. (that's for ~~other documentation~~ tutorials
 Nothing here yet.
 
 # gbops
-You may find a rendered version of the table [here](table/table.html). and the raw json version [here](table/dmgops.json)
+You may find a html (rendered if on github pages) version [here](table/table.html). and the raw json version [here](table/dmgops.json)
+
+# github / github pages traversal 
+Since you wouldn't be able to easily do so otherwise:  
+[github](https://github.com/izik1/gbops)<->[github sites](https://izik1.github.io/gbops/)
