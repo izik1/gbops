@@ -1,3 +1,11 @@
+lsm-8-color = orchid
+lsm-16-color = darkorchid
+alu-8-color = limegreen
+alu-16-color = seagreen
+rsb-8-color = deepskyblue
+control-br-color = tomato
+control-misc-color = lightsalmon
+
 pre, table.opcode, div.sample-instruction
     font-size: 0.7rem
 
@@ -140,24 +148,24 @@ td.opcode
         
     &.lsm
         &.x8
-            opcode-coloring(orchid)
+            opcode-coloring(lsm-8-color)
         &.x16
-            opcode-coloring(darkorchid)
+            opcode-coloring(lsm-16-color)
 
     &.alu
         &.x8
-            opcode-coloring(limegreen)
+            opcode-coloring(alu-8-color)
         &.x16
-            opcode-coloring(seagreen)
+            opcode-coloring(lsm-16-color)
 
     &.x8.rsb
-        opcode-coloring(deepskyblue)
+        opcode-coloring(rsb-8-color)
         
     &.control
         &.misc
-            opcode-coloring(tomato)
+            opcode-coloring(control-misc-color)
         &.br
-            opcode-coloring(lightsalmon)
+            opcode-coloring(control-br-color)
 
 td.opcode.unused
     background-color: #c8cdd1
@@ -196,24 +204,24 @@ dl.groups, ul.groups
 
         &.lsm
             &.x8::before
-                color: orchid
+                color: lsm-8-color
             &.x16::before
-                color: mediumorchid
+                color: lsm-16-color
         
         &.alu
             &.x8::before
-                color: lime
+                color: alu-8-color
             &.x16::before
-                color: limegreen
+                color: alu-16-color
 
         &.x8.rsb::before
-            color: cyan
+            color: rsb-8-color
             
         &.control
             &.misc::before
-                color: tomato
+                color: control-br-color
             &.br::before
-                color: lightsalmon
+                color: control-misc-color
 
 dl.sameline
     display: grid;
