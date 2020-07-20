@@ -2,11 +2,11 @@
 <head>
     <script id="op-tmpl" type="text/x-jsrender">
         <td style="background-color: {{:~color(Group)}};">
-		{{if Name != "UNUSED"}}
+            {{if Name != "UNUSED"}}
             {{:Name}}
             <br />{{:Length}} {{:~timing(TCyclesMin, TCyclesMax)}}
             <br />{{:Flags.Z}}{{:Flags.N}}{{:Flags.H}}{{:Flags.C}}
-		{{/if}}
+            {{/if}}
         </td>
     </script>
     <link rel="preload" href="dmgops.json" as="fetch">
@@ -16,18 +16,19 @@
     <script type="text/javascript" src="table.js"></script>
     <script>
         window.onload = () => {
-		    loadTables();
-			document.querySelector('select[name="cycle_mode"]').onchange=cycle_mode_changed;
-		}
+            loadTables();
+            document.querySelector('select[name="cycle_mode"]').onchange = cycle_mode_changed;
+        }
     </script>
 </head>
 <body>
-<label>Cycle mode:
-    <select name="cycle_mode">
-        <option value="t" selected>t</option>
-	    <option value="m">m</option>
-		<option value="both">both</option>
-    </input>
-</label>
+    <label>
+        Cycle mode:
+        <select name="cycle_mode">
+            <option value="t" selected>t</option>
+            <option value="m">m</option>
+            <option value="both">both</option>
+        </select>
+    </label>
 </body>
 </html>
