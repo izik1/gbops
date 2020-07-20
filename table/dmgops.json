@@ -261,7 +261,7 @@
          }
       },
       {
-         "Name" : "INC C",
+         "Name" : "INC D",
          "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
@@ -365,7 +365,7 @@
          }
       },
       {
-         "Name" : "INC D",
+         "Name" : "INC E",
          "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
