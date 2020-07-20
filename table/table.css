@@ -102,7 +102,7 @@ td.opcode {
     -webkit-user-select: none;
 }
 
-td.opcode:hover {
+td.opcode:not(.unused):hover {
     background-color: rgb(220, 220, 220);
 }
 
