@@ -62,6 +62,15 @@
                 set or reset depending on the result of the instrucion (letter for flag)
                 or do nothing (-)
             </p>
+            <h5>How does the search bar work?</h5>
+            <p>
+                The search bar works by comparing properties of an opcode to a given number&#47;string.<br />
+                The currently supported properties are length|len, name and number|num|opcode|op|&#35;.<br />
+                The currently supported comparisions are &lt;, &lt;=, =, &gt; and &gt;=.
+            </p>
+            <h5>Help!!! Why isn't the search bar working!?</h5>
+            <p>The search bar is currently a huge WIP and will have tons of bugs, if you find one please report it to
+                <a href="https://github.com/izik1/gbops/issues">The Issue Tracker</a></p>
         </details>
 
         <label>
@@ -78,6 +87,10 @@
                 <option value="m">m</option>
                 <option value="both">both</option>
             </select>
+        </label>
+        <label>
+            Search:
+            <input type="search" name="search-box" />
         </label>
     </div>
     <div id="floating-box-container" style="display: none;" onClick="disableFloatingBox()">
