@@ -27,9 +27,9 @@ function cycle_mode_changed(event) {
 
 var table_tmpl_helper = {
     get_top_header: width => {
-        var row = $('<tr class="top"/>').append('<th>--</th>');
+        var row = $('<tr><th>--</th></tr>')
         for (var i = 0; i < width; i++) {
-            row.append($('<th />').html('+' + i.toString(16).toUpperCase()));
+            row.append($('<th/>').html('+' + i.toString(16).toUpperCase()));
         }
 
         return row[0].outerHTML;
@@ -39,7 +39,7 @@ var table_tmpl_helper = {
         var get_prefix = row => (row * step).toString(16).toUpperCase().padStart(2, '0') + '+';
         var rows = $('<div/>');
         for (var row_num = 0; row_num < 0x100 / step; row_num++) {
-            var row = $('<tr />').append(`<th>${get_prefix(row_num)}</th>`).appendTo(rows);
+            var row = $('<tr/>').append(`<th>${get_prefix(row_num)}</th>`).appendTo(rows);
             for (var i = 0; i < step; i++) {
                 row.append($.templates('#op-tmpl').render(table_data[row_num * step + i], op_tmpl_helpers));
             }
