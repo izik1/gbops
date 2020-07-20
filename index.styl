@@ -1,12 +1,17 @@
+pre, table.opcode, div.sample-instruction
+    font-size: 0.7rem
+
+table.opcode
+    font-family: 'Ubuntu Mono', monospace
+
+
 table.opcode 
     border-collapse: collapse
     table-layout: fixed
     width: 100%
     min-width: 10em * 15
-    font-family: 'Ubuntu Mono', monospace
-    font-size: 10px
     margin-bottom: 1em
-    border: 0.1em solid black
+    border: 1pt solid black
     background-color: black
 
     caption
@@ -17,7 +22,7 @@ table.opcode
     tr
         >th
             padding: 0.8em
-            border: 0.1em solid black
+            border: 1pt solid black
             &:first-child
                 width: 3em
         >td
@@ -40,11 +45,11 @@ table.opcode
 :root {
     background-color: snow
     font-family: 'KoHo', sans-serif
-    font-size: 15px
+    font-size: 16px
     font-color: #333
 }
 
-#floating-box-container {
+#floating-box-container
     z-index: 100
     position: fixed
     top: 0%
@@ -53,8 +58,6 @@ table.opcode
     height: 100%
     background-color: darkgrey
     background-color: rgba(169,169,169, .6)
-
-}
 
 #floating-box {
     position: fixed
@@ -86,7 +89,7 @@ table.opcode
     }
 
     background-color: snow
-    border: 0.1em solid black
+    border: 1pt solid black
     padding: 0
     font-family: 'Ubuntu Mono', monospace
     overflow: auto
@@ -99,7 +102,7 @@ opcode-coloring(color)
         background-color: color
 
 td.opcode
-    border: 0.1em solid black
+    border: 1pt solid black
     background-color:  rgb(237,237,237)
     position: relative
     background-clip: padding-box
@@ -155,14 +158,17 @@ code
     font-family: 'Ubuntu Mono', monospace
 
 #header
-    padding: 0 1em 0.5em 1em
+    margin: 0 1em 0.5em 1em
 
 #glossary
-    padding: 1em 1em 0.5em 1em
+    margin: 1em 1em 0.5em 1em
     >dl
         >dt
             font-weight: bold
         padding-bottom: 0.5em
+
+#help-section
+   margin: 0.8em
 
 dl.groups, ul.groups
     list-style: none;
@@ -206,29 +212,43 @@ a
     display: grid
     grid-template-columns: 1fr 1fr
     grid-template-rows: auto auto
-    padding: 0.8em
 
 .name
     grid-area: 1 / 1 / 1 / 3
     justify-self: center
     text-align: center
-    padding: 0.5em
+    margin: 0.5em
   
 .data-column
     justify-self: start
     grid-area: 2 / 1
-    padding: 0.5em
+    margin: 0.5em
   
 .timing-column
     justify-self: end
     grid-area: 2 / 2
-    padding: 0.5em
+    margin: 0.5em
   
 .flag-table
     caption
-        padding-top: 1em 
+        margin-top: 1em 
     th
         text-align: left
-        padding-right: 0.5em
-    padding-bottom: 1em;
-  
+        margin-right: 0.5em
+    margin-bottom: 1em;
+
+.sample-instruction
+    display: inline-block;
+    border: 1pt solid black;
+    font-family: 'Ubuntu Mono', monospace;
+    text-align: center;
+    padding: 0.5em 1em
+    margin: 1em
+
+pre
+    font-family: 'Ubuntu Mono', monospace;
+
+#table-controls
+    display: inline-block
+    >*
+        margin: 0em 1em;
