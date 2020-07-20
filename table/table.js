@@ -6,19 +6,11 @@ var width = null;
 
 var tables = [];
 
-function table_width_changed(event) {
-    width = event.target.value;
-    redrawTables();
-}
-
-function cycle_mode_changed(event) {
-    cycle_mode = event.target.value;
-    redrawTables();
-}
+var macOS = false;
 
 function create_op(op) {
     let span = null
-    if(op.Name != "UNUSED") span = $("<pre/>").html(`${op.Name}\n` +
+    if (op.Name != "UNUSED") span = $("<pre/>").html(`${op.Name}\n` +
         `${op.Length} ${op_timing(op.TCyclesMin, op.TCyclesMax, cycle_mode)}\n` +
         `${op.Flags.Z}&#8203;${op.Flags.N}&#8203;${op.Flags.H}&#8203;${op.Flags.C}`);
 
@@ -35,7 +27,7 @@ function get_top_header(width) {
     return row;
 }
 
- function get_rows(step, table_data) {
+function get_rows(step, table_data) {
     const get_prefix = row => (row * step).toString(16).toUpperCase().padStart(2, '0') + '+';
     const rows = $('<div/>');
 
@@ -79,50 +71,55 @@ function redrawTables() {
 }
 
 function loadTable(id, table) {
-    const table_tmp = $(`#${id}-${width}-${cycle_mode}`);
+    const loaded_table = $(`#${id}-${width}-${cycle_mode}`);
 
-    if (table_tmp.length > 0) return table_tmp;
+    if (loaded_table.length > 0) return loaded_table;
     if (!table) return null;
+
     return $('<table/>')
         .attr('id', `${id}-${width}-${cycle_mode}`)
         .addClass('opcode')
         .append(get_top_header(width))
         .append(get_rows(width, table).children())
-        .on("dblclick", "td.opcode", table, enableFloatingBox);
+        .on("dblclick", "td.opcode", table, (e) => {
+            if (e.target === e.currentTarget) enableFloatingBox($(e.target), e.data);
+        }).on("click", "td.opcode", table, (e) => {
+            if ((!macOS && e.ctrlKey) || (macOS && e.metaKey)) enableFloatingBox($(e.target), e.data);
+        })
 }
 
 function init() {
     function bind_get(name, fn) {
-        return $(`select[name="${name}"]`).on('change', fn).find(':selected').val();
+        return $(`select[name="${name}"]`).on('change', e => {
+            fn(e);
+            redrawTables();
+        }).find(':selected').val();
     }
 
-    $('#floating-box').click((e) => e.stopPropagation());
-    width = bind_get("table_width", table_width_changed);
-    cycle_mode = bind_get("cycle_mode", cycle_mode_changed);
+    $('#floating-box').click(e => e.stopPropagation());
+    width = bind_get("table_width", e => width = e.target.value);
+    cycle_mode = bind_get("cycle_mode", e => cycle_mode = e.target.value);
+    macOS = navigator.appVersion.indexOf("Mac") != -1;
     redrawTables();
 }
 
-function enableFloatingBox(event, cell, supportBubbling) {
-    if (supportBubbling || event.target === this) {
-        const target = $(event.target);
+function enableFloatingBox(target, table) {
+    // kind of a hack, calculate the 2-dim index of the cell.
+    const x = target.index() - 1;
+    const width = target.parent().children().length - 1;
+    const y = target.parent().index() - 1;
 
-        // kind of a hack, calculate the 2-dim index of the cell.
-        const x = target.index() - 1;
-        const width = target.parent().children().length - 1;
-        const y = target.parent().index() - 1;
+    const cell = table[y * width + x];
 
-        const cell = event.data[y * width + x];
+    if (!cell.TimingMax) return;
 
-        if(!cell.TimingMax) return;
-
-        const floating_box = $('#floating-box');
-        floating_box.html("");
-        for (let timing_point of cell.TimingMax) {
-            floating_box.append(timing_point.Type + "<br/>").append(timing_point.Comment).append('<br>');
-        }
-
-        $('#floating-box-container').show();
+    const floating_box = $('#floating-box');
+    floating_box.html("");
+    for (let timing_point of cell.TimingMax) {
+        floating_box.append(timing_point.Type + '<br>').append(timing_point.Comment).append('<br>');
     }
+
+    $('#floating-box-container').show();
 }
 
 function disableFloatingBox() {

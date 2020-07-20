@@ -1,8 +1,9 @@
- <!DOCTYPE html> 
-<meta charset="utf-8" /> 
+<!DOCTYPE html>
+<meta charset="utf-8" />
 <html>
+
 <head>
-    <link rel="preload" href="dmgops.json" as="fetch">
+    <link rel="preload" href="dmgops.json" as="fetch" type="application/json">
     <link rel="stylesheet" href="table.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="table.js"></script>
@@ -10,10 +11,12 @@
         window.onload = init;
     </script>
 </head>
+
 <body>
     <div id="header">
         <details>
-            <summary>Help</summary>    <h5>Instruction format: </h5>
+            <summary>Help</summary>
+            <h5>Instruction format: </h5>
 
             <div style="
             display: inline-block;
@@ -48,7 +51,8 @@
                 A T-Cycle is 1 Game Boy cpu clock tick. (t=tick)
                 The other way is with "M-Cycles" (machine cycles) which are just t/4 (4t=1m).
                 [wip: Description of <b>why</b> to use M-cycles goes here.]
-                However more complex timing uses T-Cycles. This opcode table allows you to switch between using either or both.
+                However more complex timing uses T-Cycles. This opcode table allows you to switch between using either
+                or both.
             </p>
             <h5>Flags?</h5>
             <p>
@@ -77,6 +81,9 @@
             </select>
         </label>
     </div>
-    <div id="floating-box-container" style="display: none;" onClick="disableFloatingBox()"><div id="floating-box"></div></div>
+    <div id="floating-box-container" style="display: none;" onClick="disableFloatingBox()">
+        <div id="floating-box"></div>
+    </div>
 </body>
+
 </html>
