@@ -9,11 +9,11 @@ var tables = null;
 var macOS = false;
 
 function create_op(op) {
-    return $("<td>/").append(op.Name != "UNUSED" && $("<pre/>").html(
+    return $("<td/>").append($("<div/>").append(op.Name != "UNUSED" && $("<pre/>").html(
         `${op.Name}\n` +
         `${op.Length} ${op_timing(op)}\n` +
         `${op.Flags.Z}&#8203;${op.Flags.N}&#8203;${op.Flags.H}&#8203;${op.Flags.C}`
-    )).addClass("opcode").addClass(op.Group);
+    ))).addClass("opcode").addClass(op.Group);
 }
 
 
