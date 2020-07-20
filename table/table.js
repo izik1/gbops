@@ -11,7 +11,7 @@ var macOS = false;
 function create_op(op) {
     let span = null
     if (op.Name != "UNUSED") span = $("<pre/>").html(`${op.Name}\n` +
-        `${op.Length} ${op_timing(op.TCyclesMin, op.TCyclesMax, cycle_mode)}\n` +
+        `${op.Length} ${op_timing(op)}\n` +
         `${op.Flags.Z}&#8203;${op.Flags.N}&#8203;${op.Flags.H}&#8203;${op.Flags.C}`);
 
     return $("<td>/").append(span).addClass("opcode").addClass(op.Group);
@@ -42,13 +42,18 @@ function get_rows(step, table_data) {
     return rows;
 }
 
-function op_timing(min, max, mode) {
+function cycle_timing(min, max, mode) {
+    mode = mode || cycle_mode;
     switch (mode) {
         case "t": return min !== max ? `${min}t-${max}t` : `${min}t`;
         case "m": return min !== max ? `${min / 4}m-${max / 4}m` : `${min / 4}m`;
         case "both": // &#8203; is a 0 width space.
-        default: return op_timing(min, max, 't') + "&#8203;/&#8203;" + op_timing(min, max, 'm');
+        default: return cycle_timing(min, max, 't') + "&#8203;/&#8203;" + cycle_timing(min, max, 'm');
     }
+}
+
+function op_timing(op) {
+    return cycle_timing(op.TCyclesNoBranch, op.TCyclesBranch);
 }
 
 function redrawTables() {
@@ -103,6 +108,24 @@ function init() {
     redrawTables();
 }
 
+function generateAdvancedTiming(cell) {
+    const container = $('<div>')
+
+    function generate(timing_points, tcycles, header_text) {
+        container.append($(`<b>${header_text}:</b> (${cycle_timing(tcycles, tcycles)})<br>`));
+
+        for (let timing_point of timing_points) {
+            container.append(timing_point.Type + '<br>').append(timing_point.Comment).append('<br>');
+        }
+    }
+
+    if (cell.TimingNoBranch) generate(cell.TimingNoBranch, cell.TCyclesNoBranch, "timing w/o branch");
+
+    if (cell.TimingBranch) generate(cell.TimingBranch, cell.TCyclesBranch, "timing with branch");
+
+    return container;
+}
+
 function enableFloatingBox(target, table) {
     // kind of a hack, calculate the 2-dim index of the cell.
     const x = target.index() - 1;
@@ -111,14 +134,11 @@ function enableFloatingBox(target, table) {
 
     const cell = table[y * width + x];
 
-    if (!cell.TimingMax) return;
+    const timing_info = generateAdvancedTiming(cell).contents();
 
-    const floating_box = $('#floating-box');
-    floating_box.html("");
-    for (let timing_point of cell.TimingMax) {
-        floating_box.append(timing_point.Type + '<br>').append(timing_point.Comment).append('<br>');
-    }
+    if (timing_info.length === 0) return;
 
+    $('#floating-box').html(timing_info);
     $('#floating-box-container').show();
 }
 
