@@ -13,7 +13,7 @@ Create the most accurate and descriptive Gameboy (DMG) Opcode table (so far™)
 Nothing here yet.
 
 # gbops
-You may find a html (rendered if on github pages) version [here](table/table.html). and the raw json version [here](table/dmgops.json)
+You may find a html (rendered if on github pages) version [here](table/index.html). and the raw json version [here](table/dmgops.json)
 
 # github / github pages traversal 
 Since you wouldn't be able to easily do so otherwise:  
