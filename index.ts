@@ -77,7 +77,7 @@ function hideTables() {
 
 function redrawTables(width: number) {
     let newUnprefixed = document.getElementById(`unprefixed-${width}-${cycleMode}`);
-    let newCBPrefixed = document.getElementById(`unprefixed-${width}-${cycleMode}`);
+    let newCBPrefixed = document.getElementById(`cbprefixed-${width}-${cycleMode}`);
 
     if (newUnprefixed && newCBPrefixed) {
         searchBoxKeyUp();
