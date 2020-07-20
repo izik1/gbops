@@ -7,17 +7,13 @@ table.opcode
     font-size: 10px
     margin-bottom: 1em
     border: 0.1em solid black
+    background-color: black
 
     caption
         font-size: 1rem
         text-align: left
 
-    >tr
-        background-color: black
-        &:nth-of-type(odd)>th
-            background-color: lightgrey
-        &:nth-of-type(even)>th
-            background-color: rgb(245, 245, 245)
+    tr
         >th
             padding: 0.8em
             border: 0.1em solid black
@@ -27,6 +23,18 @@ table.opcode
             text-align: center
             padding: 0
          
+    thead
+        width: 100%
+
+        &>tr
+            &:nth-of-type(odd)>th
+                background-color: lightgrey
+
+    tbody>tr
+        &:nth-of-type(even)>th
+            background-color: lightgrey
+        &:nth-of-type(odd)>th
+            background-color: rgb(245, 245, 245)         
 
 :root {
     background-color: snow
@@ -35,7 +43,7 @@ table.opcode
 }
 
 #floating-box-container {
-    z-index: 1
+    z-index: 100
     position: fixed
     top: 0%
     left: 0%
