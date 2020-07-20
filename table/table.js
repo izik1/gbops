@@ -18,11 +18,9 @@ function cycle_mode_changed(event) {
 
 function create_op(op) {
     let span = null
-    if(op.Name != "UNUSED") {
-        span = $("<pre/>").html(`${op.Name}\n` +
-            `${op.Length} ${op_timing(op.TCyclesMin, op.TCyclesMax, cycle_mode)}\n` +
-            `${op.Flags.Z}&#8203;${op.Flags.N}&#8203;${op.Flags.H}&#8203;${op.Flags.C}`);
-    }
+    if(op.Name != "UNUSED") span = $("<pre/>").html(`${op.Name}\n` +
+        `${op.Length} ${op_timing(op.TCyclesMin, op.TCyclesMax, cycle_mode)}\n` +
+        `${op.Flags.Z}&#8203;${op.Flags.N}&#8203;${op.Flags.H}&#8203;${op.Flags.C}`);
 
     return $("<td>/").append(span).addClass("opcode").addClass(op.Group);
 }
@@ -108,7 +106,7 @@ function enableFloatingBox(event, cell, supportBubbling) {
     if (supportBubbling || event.target === this) {
         const target = $(event.target);
 
-        // kind of a hack, calculate the 2-dim index if the cell.
+        // kind of a hack, calculate the 2-dim index of the cell.
         const x = target.index() - 1;
         const width = target.parent().children().length - 1;
         const y = target.parent().index() - 1;
@@ -120,8 +118,7 @@ function enableFloatingBox(event, cell, supportBubbling) {
         const floating_box = $('#floating-box');
         floating_box.html("");
         for (let timing_point of cell.TimingMax) {
-            floating_box.append(timing_point.Type + "<br/>");
-            if(timing_point.Comment) floating_box.append(timing_point.Comment + "<br/>");
+            floating_box.append(timing_point.Type + "<br/>").append(timing_point.Comment).append('<br>');
         }
 
         $('#floating-box-container').show();
