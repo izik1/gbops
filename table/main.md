@@ -145,6 +145,78 @@
 [LD A,(HL)]: nm/LDr8r8
 [LD A,A]: nm/LDr8r8
 
+[//]: # (8x)
+[ADD B]: nm/ADD8
+[ADD C]: nm/ADD8
+[ADD D]: nm/ADD8
+[ADD E]: nm/ADD8
+[ADD H]: nm/ADD8
+[ADD L]: nm/ADD8
+[ADD (HL)]: nm/ADD8
+[ADD A]: nm/ADD8
+[ADC B]: nm/ADC8
+[ADC C]: nm/ADC8
+[ADC D]: nm/ADC8
+[ADC E]: nm/ADC8
+[ADC H]: nm/ADC8
+[ADC L]: nm/ADC8
+[ADC (HL)]: nm/ADC8
+[ADC A]: nm/ADC8
+
+[//]: # (9x)
+[SUB B]: nm/SUB8
+[SUB C]: nm/SUB8
+[SUB D]: nm/SUB8
+[SUB E]: nm/SUB8
+[SUB H]: nm/SUB8
+[SUB L]: nm/SUB8
+[SUB (HL)]: nm/SUB8
+[SUB A]: nm/SUB8
+[SBC B]: nm/SBC8
+[SBC C]: nm/SBC8
+[SBC D]: nm/SBC8
+[SBC E]: nm/SBC8
+[SBC H]: nm/SBC8
+[SBC L]: nm/SBC8
+[SBC (HL)]: nm/SBC8
+[SBC A]: nm/SBC8
+
+[//]: # (Ax)
+[AND B]: nm/AND8
+[AND C]: nm/AND8
+[AND D]: nm/AND8
+[AND E]: nm/AND8
+[AND H]: nm/AND8
+[AND L]: nm/AND8
+[AND (HL)]: nm/AND8
+[AND A]: nm/AND8
+[XOR B]: nm/XOR8
+[XOR C]: nm/XOR8
+[XOR D]: nm/XOR8
+[XOR E]: nm/XOR8
+[XOR H]: nm/XOR8
+[XOR L]: nm/XOR8
+[XOR (HL)]: nm/XOR8
+[XOR A]: nm/XOR8
+
+[//]: # (Bx)
+[OR B]: nm/OR8
+[OR C]: nm/OR8
+[OR D]: nm/OR8
+[OR E]: nm/OR8
+[OR H]: nm/OR8
+[OR L]: nm/OR8
+[OR (HL)]: nm/OR8
+[OR A]: nm/OR8
+[CP B]: nm/CP8
+[CP C]: nm/CP8
+[CP D]: nm/CP8
+[CP E]: nm/CP8
+[CP H]: nm/CP8
+[CP L]: nm/CP8
+[CP (HL)]: nm/CP8
+[CP A]: nm/CP8
+
 ## Short Format:
 ``<name/link> size min_time_t-max_time_t/min_time_m-max_time_m `flags` `` **or**  
 ``<name/link> size time_t/time_m `flags` ``
@@ -160,9 +232,9 @@
 |5x|[LD D,B] 1 4t/1m `----`|[LD D,C] 1 4t/1m `----`|[LD D,D] 1 4t/1m `----`|[LD D,E] 1 4t/1m `----`|[LD D,H] 1 4t/1m `----`|[LD D,L] 1 4t/1m `----`|[LD D,(HL)] 1 8t/2m `----`|[LD D,A] 1 4t/1m `----`|[LD E,B] 1 4t/1m `----`|[LD E,C] 1 4t/1m `----`|[LD E,D] 1 4t/1m `----`|[LD E,E] 1 4t/1m `----`|[LD E,H] 1 4t/1m `----`|[LD E,L] 1 4t/1m `----`|[LD E,(HL)] 1 8t/2m `----`|[LD E,A] 1 4t/1m `----`|
 |6x|[LD H,B] 1 4t/1m `----`|[LD H,C] 1 4t/1m `----`|[LD H,D] 1 4t/1m `----`|[LD H,E] 1 4t/1m `----`|[LD H,H] 1 4t/1m `----`|[LD H,L] 1 4t/1m `----`|[LD H,(HL)] 1 8t/2m `----`|[LD H,A] 1 4t/1m `----`|[LD L,B] 1 4t/1m `----`|[LD L,C] 1 4t/1m `----`|[LD L,D] 1 4t/1m `----`|[LD L,E] 1 4t/1m `----`|[LD L,H] 1 4t/1m `----`|[LD L,L] 1 4t/1m `----`|[LD L,(HL)] 1 8t/2m `----`|[LD L,A] 1 4t/1m `----`|
 |7x|[LD (HL),B] 1 4t/1m `----`|[LD (HL),C] 1 4t/1m `----`|[LD (HL),D] 1 4t/1m `----`|[LD (HL),E] 1 4t/1m `----`|[LD (HL),H] 1 4t/1m `----`|[LD (HL),L] 1 4t/1m `----`|[HALT] 1 4t/1m `----`|[LD (HL),A] 1 4t/1m `----`|[LD A,B] 1 4t/1m `----`|[LD A,C] 1 4t/1m `----`|[LD A,D] 1 4t/1m `----`|[LD A,E] 1 4t/1m `----`|[LD A,H] 1 4t/1m `----`|[LD A,L] 1 4t/1m `----`|[LD A,(HL)] 1 8t/2m `----`|[LD A,A] 1 4t/1m `----`|
-|8|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
-|9|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
-|A|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|8|[ADD B] 1 4t/1m `Z0HC`|[ADD C] 1 4t/1m `Z0HC`|[ADD D] 1 4t/1m `Z0HC`|[ADD E] 1 4t/1m `Z0HC`|[ADD H] 1 4t/1m `Z0HC`|[ADD L] 1 4t/1m `Z0HC`|[ADD (HL)] 1 12t/3m `Z0HC`|[ADD A] 1 4t/1m `Z0HC`|[ADC B] 1 4t/1m `Z0HC`|[ADC C] 1 4t/1m `Z0HC`|[ADC D] 1 4t/1m `Z0HC`|[ADC E] 1 4t/1m `Z0HC`|[ADC H] 1 4t/1m `Z0HC`|[ADC L] 1 4t/1m `Z0HC`|[ADC (HL)] 1 12t/3m `Z0HC`|[ADC A] 1 4t/1m `Z0HC`|
+|9|[SUB B] 1 4t/1m `Z1HC`|[SUB C] 1 4t/1m `Z1HC`|[SUB D] 1 4t/1m `Z1HC`|[SUB E] 1 4t/1m `Z1HC`|[SUB H] 1 4t/1m `Z1HC`|[SUB L] 1 4t/1m `Z1HC`|[SUB (HL)] 1 12t/3m `Z1HC`|[SUB A] 1 4t/1m `Z1HC`|[SBC B] 1 4t/1m `Z1HC`|[SBC C] 1 4t/1m `Z1HC`|[SBC D] 1 4t/1m `Z1HC`|[SBC E] 1 4t/1m `Z1HC`|[SBC H] 1 4t/1m `Z1HC`|[SBC L] 1 4t/1m `Z1HC`|[SBC (HL)] 1 12t/3m `Z1HC`|[SBC A] 1 4t/1m `Z1HC`|
+|A|[AND B] 1 4t/1m `Z010`|[AND C] 1 4t/1m `Z010`|[AND D] 1 4t/1m `Z010`|[AND E] 1 4t/1m `Z010`|[AND H] 1 4t/1m `Z010`|[AND L] 1 4t/1m `Z010`|[AND (HL)] 1 12t/3m `Z010`|[AND A] 1 4t/1m `Z010`|[XOR B] 1 4t/1m `Z000`|[XOR C] 1 4t/1m `Z000`|[XOR D] 1 4t/1m `Z000`|[XOR E] 1 4t/1m `Z000`|[XOR H] 1 4t/1m `Z000`|[XOR L] 1 4t/1m `Z000`|[XOR (HL)] 1 12t/3m `Z000`|[XOR A] 1 4t/1m `Z000`|
 |B|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |C|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |D|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
