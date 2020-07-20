@@ -66,15 +66,15 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "DEC B",
+         "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
-            "Z" : "-",
-            "N" : "-",
-            "H" : "-",
+            "Z" : "Z",
+            "N" : "1",
+            "H" : "H",
             "C" : "-"
          }
       },
@@ -170,15 +170,15 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "DEC C",
+         "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
-            "Z" : "-",
-            "N" : "-",
-            "H" : "-",
+            "Z" : "Z",
+            "N" : "1",
+            "H" : "H",
             "C" : "-"
          }
       },
@@ -274,15 +274,15 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "DEC D",
+         "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
-            "Z" : "-",
-            "N" : "-",
-            "H" : "-",
+            "Z" : "Z",
+            "N" : "1",
+            "H" : "H",
             "C" : "-"
          }
       },
@@ -378,15 +378,15 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "DEC E",
+         "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
-            "Z" : "-",
-            "N" : "-",
-            "H" : "-",
+            "Z" : "Z",
+            "N" : "1",
+            "H" : "H",
             "C" : "-"
          }
       },
@@ -482,15 +482,15 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "DEC H",
+         "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
-            "Z" : "-",
-            "N" : "-",
-            "H" : "-",
+            "Z" : "Z",
+            "N" : "1",
+            "H" : "H",
             "C" : "-"
          }
       },
@@ -586,15 +586,15 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "DEC L",
+         "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
-            "Z" : "-",
-            "N" : "-",
-            "H" : "-",
+            "Z" : "Z",
+            "N" : "1",
+            "H" : "H",
             "C" : "-"
          }
       },
@@ -690,15 +690,15 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
-         "TCyclesMax" : 4,
-         "TCyclesMin" : 4,
-         "Length" : 0,
+         "Name" : "DEC (HL)",
+         "Group" : "x8/alu",
+         "TCyclesMax" : 12,
+         "TCyclesMin" : 12,
+         "Length" : 1,
          "Flags" : {
-            "Z" : "-",
-            "N" : "-",
-            "H" : "-",
+            "Z" : "Z",
+            "N" : "1",
+            "H" : "H",
             "C" : "-"
          }
       },
@@ -794,15 +794,15 @@
          }
       },
       {
-         "Name" : "",
-         "Group" : "",
+         "Name" : "DEC A",
+         "Group" : "x8/alu",
          "TCyclesMax" : 4,
          "TCyclesMin" : 4,
-         "Length" : 0,
+         "Length" : 1,
          "Flags" : {
-            "Z" : "-",
-            "N" : "-",
-            "H" : "-",
+            "Z" : "Z",
+            "N" : "1",
+            "H" : "H",
             "C" : "-"
          }
       },
