@@ -141,7 +141,7 @@ class ParsedSearch {
     }
 }
 
-    function lexOpcodeSearch(offset: number, str: string, result: ParsedSearch) {
+    function lexOpcodeSearch(offset: number, str: string, result: any) {
         let strMatches = strRegex.exec(str.substr(offset));
         if (strMatches) {
             result.push(new ParsedSearch("str", strMatches[1]));
@@ -193,7 +193,7 @@ function parseOpcodeSearch(str: string) {
 
 
     while (i < str.length) {
-        i += lexOpcodeSearch(i);
+        i += lexOpcodeSearch(i, str, result);
     }
 
     return result.r;
