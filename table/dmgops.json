@@ -895,7 +895,7 @@
       ]
     },
     {
-      "Name": "JR NC,i8",
+      "Name": "JR Z,i8",
       "Group": "control/br",
       "TCyclesBranch": 12,
       "TCyclesNoBranch": 8,
@@ -1081,7 +1081,7 @@
       ]
     },
     {
-      "Name": "JR Z,i8",
+      "Name": "JR NC,i8",
       "Group": "control/br",
       "TCyclesBranch": 12,
       "TCyclesNoBranch": 8,
