@@ -4,7 +4,8 @@
 ### Unprefixed Opcodes:
 
 |#|0|1|2|3|4|5|6|7|8|9|A|B|C|D|E|F|
-|0|[NOP](nm/NOP) 1 4t(1m) `----`|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|0|[NOP](nm/NOP) 1 4t(1m) `----`|[LD BC,u16](nm/LDBC,u16) 3 12t(3m) `----`|[LD (BC),a](nm/LD(BC),a) 1 8t(2m) `----`|[INC BC](nm/INCBC) 1 8t(2m) `----`|[INC B](nm/INCB) 1 4t(1m) `Z0H-`|[DEC B](nm/DECB) 1 4t(1m) `Z1H-`|[LD B,u8](LDBu8) |-|-|-|-|-|-|-|-|-|
 |1|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |2|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |3|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
@@ -25,7 +26,8 @@
 As a bit of clarification, all CB prefixed Opcodes take at least 8 t(2m)-cycles and are all two (2) bytes long. This includes the prefix. So, RLC B takes a _total_ of 8 t(2m)-cycles to execute. Additionally, CB prefixed Opcodes can _not_ have an interrupt occur between the prefix and the instruction.
 
 |#|0|1|2|3|4|5|6|7|8|9|A|B|C|D|E|F|
-|0|[RLC B](cb/RLC B) 2 8t(2m) Z00C|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|0|[RLC B](cb/RLCB) 2 8t(2m) `Z00C`|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |1|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |2|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |3|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
