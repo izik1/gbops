@@ -25,10 +25,6 @@ table.opcode>tr>th {
     padding: 8px;
 }
 
-table.opcode > :first-child {
-    position:fixed; top:0;
-}
-
 table.opcode>tr:nth-child(odd)>th {
     background-color: lightgrey;
 }
