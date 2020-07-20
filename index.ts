@@ -25,15 +25,15 @@ function tableName(type: TableType): string {
 
 function createOp(op: Opcode, index: number, cell: HTMLTableDataCellElement) {
     cell.classList.add('opcode');
-    cell.classList.add(...op.Group.replace('/', ' ').split(' '));
+    cell.classList.add(...op.Group.split('/'));
     cell.dataset.index = index.toString();
 
     if (op.Name !== "UNUSED") {
         const pre = cell.appendChild(document.createElement('div')).appendChild(document.createElement('pre'));
 
-        pre.innerHTML = `${op.Name}\n` +
+        pre.textContent = `${op.Name}\n` +
             `${op.Length} ${cycleTiming(op.TCyclesNoBranch, op.TCyclesBranch)}\n` +
-            `${op.Flags.Z}&#8203;${op.Flags.N}&#8203;${op.Flags.H}&#8203;${op.Flags.C}`;
+            `${op.Flags.Z}\u200b${op.Flags.N}\u200b${op.Flags.H}\u200b${op.Flags.C}`;
     }
 }
 
@@ -63,8 +63,8 @@ function cycleTiming(min: number, max: number, mode: CycleMode = cycleMode): str
     switch (mode) {
         case "t": return min !== max ? `${min}t-${max}t` : `${min}t`;
         case "m": return min !== max ? `${min / 4}m-${max / 4}m` : `${min / 4}m`;
-        case "both": // &#8203; is a 0 width space.
-        default: return cycleTiming(min, max, 't') + "&#8203;/&#8203;" + cycleTiming(min, max, 'm');
+        case "both": // \u200b is a 0 width space.
+        default: return cycleTiming(min, max, 't') + "\u200b/\u200b" + cycleTiming(min, max, 'm');
     }
 }
 
@@ -76,8 +76,8 @@ function hideTables() {
 }
 
 function redrawTables(width: number) {
-    let newUnprefixed = loadCachedTable('unprefixed', width);
-    let newCBPrefixed = loadCachedTable('cbprefixed', width);
+    let newUnprefixed = document.getElementById(`unprefixed-${width}-${cycleMode}`);
+    let newCBPrefixed = document.getElementById(`unprefixed-${width}-${cycleMode}`);
 
     if (newUnprefixed && newCBPrefixed) {
         searchBoxKeyUp();
@@ -123,10 +123,6 @@ function loadTable(id: TableType, width: number, opcodeTable: Opcode[]): HTMLTab
     table.addEventListener("click", ev => tableOnClick(ev, opcodeTable));
 
     return table;
-}
-
-function loadCachedTable(id: TableType, width: number): HTMLElement | null {
-    return document.getElementById(`${id}-${width}-${cycleMode}`)
 }
 
 function generateAdvancedTiming(cell: Opcode) {
@@ -239,6 +235,7 @@ function searchBoxKeyUp(searchBox: HTMLSelectElement | null = null) {
     const width = parseInt((<HTMLSelectElement>document.getElementsByName('table_width').item(0)).selectedOptions[0].value);
 
     if (!tables) return;
+    if(searchString == "") return;
 
     const unprefixedTable = document.querySelector(`#unprefixed-${width}-${cycleMode} tbody`);
     const CBPrefixedTable = document.querySelector(`#cbprefixed-${width}-${cycleMode} tbody`);
