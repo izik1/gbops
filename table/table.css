@@ -11,6 +11,10 @@ table {
 	min-width: 1500px;
 }
 
+th:first-child {
+    width: 20px;
+}
+
 tr:nth-child(odd) {
     background-color: lightgrey;
 }
