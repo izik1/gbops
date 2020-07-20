@@ -1,6 +1,19 @@
 pre, table.opcode, div.sample-instruction
     font-size: 0.7rem
 
+#titlecard
+    text-align: center
+
+input, select
+    background-color: Snow
+    color: rgb(34, 34, 34)
+    border: 1px solid grey
+    fill: snow
+    flood-color: snow
+    stop-coor: snow
+    border-radius: 2px
+    box-shadow: none
+
 table.opcode
     font-family: 'Ubuntu Mono', monospace
 
@@ -100,7 +113,7 @@ h1
 
 opcode-coloring(color)
     > div
-        background-color: color - rgba(0, 0, 0, 0.7)
+        background-color: color - rgba(0, 0, 0, 0.5)
     &::before
         background-color: color
 
@@ -129,16 +142,16 @@ td.opcode
         &.x8
             opcode-coloring(orchid)
         &.x16
-            opcode-coloring(mediumorchid)
+            opcode-coloring(darkorchid)
 
     &.alu
         &.x8
-            opcode-coloring(lime)
-        &.x16
             opcode-coloring(limegreen)
+        &.x16
+            opcode-coloring(seagreen)
 
     &.x8.rsb
-        opcode-coloring(cyan)
+        opcode-coloring(deepskyblue)
         
     &.control
         &.misc
