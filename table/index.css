@@ -62,8 +62,9 @@ table.opcode>tr>td {
     height: 60%;
     background-color: Snow;
     border: 1px solid black;
-    padding: 1em;
+    padding: 0px;
     font-family: 'Ubuntu Mono', monospace;
+    overflow: auto;
 }
 
 td.opcode.x16\/lsm > div {
@@ -153,7 +154,7 @@ td.opcode::before {
 td.opcode.hidden {
     visibility: hidden;
 }
-
+  
 td.opcode > div {
     /* height:100%;
     width:100%; */
@@ -173,3 +174,35 @@ code {
     padding-right: 1em;
     padding-bottom: 0.5em
 }
+
+.floating-grid-container {
+    display: grid;
+    grid-template-columns: 2fr auto 2fr;
+    grid-template-rows: auto auto;
+    padding: 8px;
+  }
+
+  .name {
+    grid-area: 1 / 2;
+    justify-self: center;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  .data-column {
+    justify-self: start;
+    grid-area: 2 / 1;
+    padding: 8px;
+  }
+  
+  .timing-column {
+    justify-self: end;
+    grid-area: 2 / 3;
+    padding: 8px;
+  }
+  
+  .flag-table th {
+    text-align: left;
+    padding-right: 8px;
+  }
+  

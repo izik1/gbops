@@ -92,19 +92,51 @@ function loadTable(id, table) {
 }
 
 function generateAdvancedTiming(cell) {
-    const container = $('<div>')
-
-    function generate(timing_points, tcycles, header_text) {
-        container.append($(`<b>${header_text}:</b> (${cycle_timing(tcycles, tcycles)})<br>`));
-        for (let timing_point of timing_points) {
-            container.append(timing_point.Type, '<br>', timing_point.Comment, '<br>');
+    const table = $('<table/>')
+        .append("<caption><strong>Timing</strong></caption>")
+        .append($('<tr>')
+            .append(cell.TimingNoBranch ? `<th>without branch (${cycle_timing(cell.TCyclesNoBranch, cell.TCyclesNoBranch)})</th>` : "")
+            .append(cell.TimingBranch ? `<th>with branch (${cycle_timing(cell.TCyclesBranch, cell.TCyclesBranch)})</th>` : ""));
+        
+    if (cell.TimingNoBranch && cell.TimingBranch) {
+        for (let i = 0; i < Math.max(cell.TimingNoBranch.length, cell.TimingBranch.length) * 2; i++) {
+            if (i % 2 == 0) {
+                table.append($("<tr/>")
+                    .append($('<td/>').append(cell.TimingNoBranch[i / 2] && cell.TimingNoBranch[i / 2].Type))
+                    .append($('<td/>').append(cell.TimingNoBranch[i / 2] && cell.TimingBranch[i / 2].Type)));
+            } else {
+                const index = (i - 1) / 2;
+                table.append($("<tr/>")
+                    .append($('<td/>').append(cell.TimingNoBranch[index] && cell.TimingNoBranch[index].Comment))
+                    .append($('<td/>').append(cell.TimingBranch[index] && cell.TimingBranch[index].Comment)));
+            }
+        }
+    } else {
+        let points = cell.TimingNoBranch || cell.TimingBranch;
+        for (let point of points) {
+            table.append(`<tr><td>${point.Type}</td></tr>`).append(`<tr><td>${point.Comment}</td></tr>`);
         }
     }
 
-    if (cell.TimingNoBranch) generate(cell.TimingNoBranch, cell.TCyclesNoBranch, "timing w/o branch");
-    if (cell.TimingBranch) generate(cell.TimingBranch, cell.TCyclesBranch, "timing with branch");
+    return table;
+}
 
-    return container;
+function getFlagText(flag) {
+    switch(flag) {
+        case "-": return "unmodified";
+        case "0": return "unset";
+        case "1": return "set";
+        default: return "dependent on operation";
+    }
+}
+
+function generateAdvancedFlags(flags) {
+    return $('<table class="flag-table"/>')
+        .append("<caption><strong>Flags</strong></caption>")
+        .append(`<tr><th>Zero</th><td>${getFlagText(flags.Z)}</td>`)
+        .append(`<tr><th>Negative</th><td>${getFlagText(flags.N)}</td>`)
+        .append(`<tr><th>Half&nbsp;Carry</th><td>${getFlagText(flags.H)}</td>`)
+        .append(`<tr><th>Carry</th><td>${getFlagText(flags.C)}</td>`);
 }
 
 function enableFloatingBox(target, table) {
@@ -115,11 +147,16 @@ function enableFloatingBox(target, table) {
 
     const cell = table[y * width + x];
 
-    const timing_info = generateAdvancedTiming(cell).contents();
+    if (cell.Name === "UNUSED") return;
 
-    if (timing_info.length === 0) return;
-
-    $('#floating-box').html(timing_info);
+    $('#floating-box').html($(`<h3 class="name">${cell.Name}</h3>`)).append($('<div class="data-column"/>')
+            .append(`<strong>Length:</strong> ${cell.Length} ` + (cell.Length === 1 ? "byte" : "bytes"))
+            .append(generateAdvancedFlags(cell.Flags))
+            .append("<br>")
+            .append(`<strong>Group:</strong> ${cell.Group}`)
+        )
+        .append($('<div class="timing-column"/>').append(generateAdvancedTiming(cell)));
+    
     $('#floating-box-container').show();
 }
 
