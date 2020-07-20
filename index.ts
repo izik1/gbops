@@ -110,8 +110,6 @@ function tableOnClick(event: MouseEvent, table: Opcode[]) {
             return;
         }
     }
-
-    console.log(event.composedPath());
 }
 
 function loadTable(id: TableType, width: number, table: Opcode[]): HTMLTableElement {
@@ -247,12 +245,9 @@ function searchBoxKeyUp(searchBox: HTMLSelectElement | null = null) {
     const unprefixedTable = document.querySelector(`#unprefixed-${width}-${cycle_mode} tbody`);
     const CBPrefixedTable = document.querySelector(`#cbprefixed-${width}-${cycle_mode} tbody`);
 
-    console.log("?");
     if (unprefixedTable === null || CBPrefixedTable === null) return;
-    console.log("?");
 
     const search = fetchOpcodeSearch(searchString);
-    console.log("?");
 
     for (let i: number = 0; i < 0x100; i++) {
         const unprefixedNode = unprefixedTable.children[Math.floor((i / width))].children[(i % width) + 1];
