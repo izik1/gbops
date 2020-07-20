@@ -1,4 +1,4 @@
-table.opcode, table.opcode>tr>th, table.opcode>tr>td {
+table.opcode, table.opcode>tr>th {
     border: 1px solid black;
 }
 
@@ -14,11 +14,19 @@ table.opcode {
 
 body {
     background-color: Snow;
-    font-family: 'KoHo', sans-serif
+    font-family: 'KoHo', sans-serif;
 }
 
 table.opcode>tr>th:first-child {
     width: 30px;
+}
+
+table.opcode>tr>th {
+    padding: 8px;
+}
+
+table.opcode > :first-child {
+    position:fixed; top:0;
 }
 
 table.opcode>tr:nth-child(odd)>th {
@@ -26,7 +34,7 @@ table.opcode>tr:nth-child(odd)>th {
 }
 
 table.opcode>tr:nth-child(even)>th {
-    background-color: white;
+    background-color: rgb(245,245,245);
 }
 
 table.opcode>tr {
@@ -35,6 +43,7 @@ table.opcode>tr {
 
 table.opcode>tr>td {
     text-align: center;
+    padding: 8px;
 }
 
 #floating-box-container {
@@ -61,41 +70,60 @@ table.opcode>tr>td {
     font-family: 'Ubuntu Mono', monospace;
 }
 
-td.opcode.x16\/lsm {
+td.opcode.x16\/lsm::before {
     background-color: MediumOrchid;
 }
 
-
-td.opcode.x16\/alu {
+td.opcode.x16\/alu::before {
     background-color: LimeGreen;
 }
 
-td.opcode.x8\/rsb {
-    background-color: Cyan;
+td.opcode.x8\/rsb::before {
+    background-color: cyan;
 }
 
-td.opcode.x8\/alu {
+td.opcode.x8\/alu::before {
     background-color: Lime;
 }
 
-td.opcode.control\/misc {
+td.opcode.control\/misc::before {
     background-color: Tomato;
 }
 
-td.opcode.x8\/lsm {
+td.opcode.x8\/lsm::before {
     background-color: Orchid;
 }
 
-td.opcode.control\/br {
+td.opcode.control\/br::before {
     background-color: LightSalmon;
 }
 
 td.opcode {
-    background-color: SlateGrey;
+    border: 1px solid black;
+    background-color:  rgb(237,237,237);
+    position: relative;
+    background-clip: padding-box;
+    -webkit-user-select: none;
+}
+
+td.opcode:hover {
+    background-color: rgb(220, 220, 220);
+}
+
+td.opcode::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 7px;
+    background-color: slategray;
+    content: ""; /* figure out why this is needed and get rid of it. */
 }
 
 td.opcode.hidden {
-    opacity: 0;
+    visibility: hidden;
+    background-color: black;
+    border-color: black;
 }
 
 td.opcode > pre {
