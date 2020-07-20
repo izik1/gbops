@@ -83,7 +83,8 @@ function loadTable(id: string, width: number, table: Opcode[]): JQuery<HTMLEleme
     return $('<table/>')
         .attr('id', `${id}-${width}-${cycle_mode}`)
         .addClass('opcode')
-       .append(
+        .append(`<caption>${id}:</caption>`)
+        .append(
             get_top_header(width),
             get_rows(width, table).children()
         ).on("click", "td.opcode:not(.hidden)", table, (e) => {
