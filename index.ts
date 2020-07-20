@@ -1,7 +1,7 @@
 'use strict';
 
 import _tables from './dmgops.json'
-import { Opcode, Flags, OpcodeTable } from "./opcode"
+import { Opcode, Flags, OpcodeTable, Flag } from "./opcode"
 
 const tables: OpcodeTable = _tables;
 
@@ -9,27 +9,28 @@ type TableType = 'unprefixed' | 'cbprefixed'
 
 import { fetchOpcodeSearch, runValidatedOpcodeSearch } from "./search";
 
-var cycle_mode: CycleMode = null;
+type CycleMode = "t" | "m" | "both" | null;
+var cycleMode: CycleMode = null;
 
 function paddedOpcode(number: number) {
     return number.toString(16).toUpperCase().padStart(2, '0');
 }
 
-function create_op(op: Opcode, index: number, cell: HTMLTableDataCellElement) {
+function createOp(op: Opcode, index: number, cell: HTMLTableDataCellElement) {
     cell.classList.add('opcode');
-    cell.classList.add(op.Group);
+    cell.classList.add(...op.Group.replace('/', ' ').split(' '));
     cell.dataset.index = index.toString();
 
     if (op.Name !== "UNUSED") {
         const pre = cell.appendChild(document.createElement('div')).appendChild(document.createElement('pre'));
 
         pre.innerHTML = `${op.Name}\n` +
-            `${op.Length} ${op_timing(op)}\n` +
+            `${op.Length} ${cycleTiming(op.TCyclesNoBranch, op.TCyclesBranch)}\n` +
             `${op.Flags.Z}&#8203;${op.Flags.N}&#8203;${op.Flags.H}&#8203;${op.Flags.C}`;
     }
 }
 
-function get_top_header(row: HTMLTableRowElement, width: number) {
+function getTopHeader(row: HTMLTableRowElement, width: number) {
     row.insertCell().outerHTML = "<th>--</th>"
     for (let i = 0; i < width; i++) {
         row.insertCell().outerHTML = `<th>+${i.toString(16).toUpperCase()}</th>`
@@ -38,33 +39,26 @@ function get_top_header(row: HTMLTableRowElement, width: number) {
     return row;
 }
 
-function get_rows(tbody: HTMLTableSectionElement, table_width: number, table_data: Opcode[]) {
-    const get_prefix = (row: number) => paddedOpcode(row * table_width) + '+';
-    for (let row_num = 0; row_num < 0x100 / table_width; row_num++) {
+function getRows(tbody: HTMLTableSectionElement, tableWidth: number, tableData: Opcode[]) {
+    for (let rowNum = 0; rowNum < 0x100 / tableWidth; rowNum++) {
 
-        const _row = tbody.insertRow();
-        _row.insertCell().outerHTML = `<th>${get_prefix(row_num)}</th>`
+        const row = tbody.insertRow();
+        row.insertCell().outerHTML = `<th>${paddedOpcode(rowNum * tableWidth)}+</th>`
 
-        for (let i = 0; i < table_width; i++) {
-            const index = row_num * table_width + i;
-            create_op(table_data[index], index, _row.insertCell());
+        for (let i = 0; i < tableWidth; i++) {
+            const index = rowNum * tableWidth + i;
+            createOp(tableData[index], index, row.insertCell());
         }
     }
 }
 
-type CycleMode = "t" | "m" | "both" | null;
-
-function cycle_timing(min: number, max: number, mode: CycleMode = cycle_mode): string {
+function cycleTiming(min: number, max: number, mode: CycleMode = cycleMode): string {
     switch (mode) {
         case "t": return min !== max ? `${min}t-${max}t` : `${min}t`;
         case "m": return min !== max ? `${min / 4}m-${max / 4}m` : `${min / 4}m`;
         case "both": // &#8203; is a 0 width space.
-        default: return cycle_timing(min, max, 't') + "&#8203;/&#8203;" + cycle_timing(min, max, 'm');
+        default: return cycleTiming(min, max, 't') + "&#8203;/&#8203;" + cycleTiming(min, max, 'm');
     }
-}
-
-function op_timing(op: Opcode) {
-    return cycle_timing(op.TCyclesNoBranch, op.TCyclesBranch);
 }
 
 function hideTables() {
@@ -75,33 +69,30 @@ function hideTables() {
 }
 
 function redrawTables(width: number) {
-    let new_unprefixed = loadCachedTable('unprefixed', width);
-    let new_cbprefixed = loadCachedTable('cbprefixed', width);
+    let newUnprefixed = loadCachedTable('unprefixed', width);
+    let newCBPrefixed = loadCachedTable('cbprefixed', width);
 
-    if (new_unprefixed && new_cbprefixed) {
+    if (newUnprefixed && newCBPrefixed) {
         searchBoxKeyUp();
 
         hideTables();
-        new_unprefixed.style.display = '';
-        new_cbprefixed.style.display = '';
+        newUnprefixed.style.display = '';
+        newCBPrefixed.style.display = '';
         return;
     }
 
-    if (!new_unprefixed) new_unprefixed = loadTable('unprefixed', width, tables.Unprefixed);
-    if (!new_cbprefixed) new_cbprefixed = loadTable('cbprefixed', width, tables.CBPrefixed);
+    if (!newUnprefixed) newUnprefixed = loadTable('unprefixed', width, tables.Unprefixed);
+    if (!newCBPrefixed) newCBPrefixed = loadTable('cbprefixed', width, tables.CBPrefixed);
 
     hideTables();
 
-    document.body.appendChild(new_unprefixed);
-    document.body.appendChild(new_cbprefixed);
+    document.body.appendChild(newUnprefixed);
+    document.body.appendChild(newCBPrefixed);
 
     searchBoxKeyUp();
 }
 
 function tableOnClick(event: MouseEvent, table: Opcode[]) {
-    if (event.target === null || event.currentTarget === null) return;
-    const target = <HTMLElement>event.target;
-    if (!target.matches("td.opcode:not(.hidden), td.opcode:not(.hidden) *")) return false;
     for (let _element of event.composedPath()) {
         const element = <HTMLElement>_element;
         if (element.tagName == 'TD' && element.classList.contains('opcode')) {
@@ -112,23 +103,23 @@ function tableOnClick(event: MouseEvent, table: Opcode[]) {
     }
 }
 
-function loadTable(id: TableType, width: number, table: Opcode[]): HTMLTableElement {
-    const _table = <HTMLTableElement>document.createElement('table');
+function loadTable(id: TableType, width: number, opcodeTable: Opcode[]): HTMLTableElement {
+    const table = <HTMLTableElement>document.createElement('table');
 
-    _table.id = `${id}-${width}-${cycle_mode}`;
-    _table.classList.add('opcode');
-    _table.createCaption().textContent = id + ":";
+    table.id = `${id}-${width}-${cycleMode}`;
+    table.classList.add('opcode');
+    table.createCaption().textContent = id + ":";
 
-    get_top_header(_table.createTHead().insertRow(), width);
+    getTopHeader(table.createTHead().insertRow(), width);
 
-    get_rows(_table.createTBody(), width, table);
-    _table.addEventListener("click", (ev) => tableOnClick(ev, table));
+    getRows(table.createTBody(), width, opcodeTable);
+    table.addEventListener("click", ev => tableOnClick(ev, opcodeTable));
 
-    return _table;
+    return table;
 }
 
 function loadCachedTable(id: TableType, width: number): HTMLElement | null {
-    return document.getElementById(`${id}-${width}-${cycle_mode}`)
+    return document.getElementById(`${id}-${width}-${cycleMode}`)
 }
 
 function generateAdvancedTiming(cell: Opcode) {
@@ -138,11 +129,11 @@ function generateAdvancedTiming(cell: Opcode) {
     table.createCaption().appendChild(document.createElement('strong')).textContent = "Timing";
     const header = table.createTHead().insertRow();
     if (cell.TimingNoBranch) {
-        header.insertCell().outerHTML = `<th>without branch (${cycle_timing(cell.TCyclesNoBranch, cell.TCyclesNoBranch)})</th>`;
+        header.insertCell().outerHTML = `<th>without branch (${cycleTiming(cell.TCyclesNoBranch, cell.TCyclesNoBranch)})</th>`;
     }
 
     if (cell.TimingBranch) {
-        header.insertCell().outerHTML = `<th>with branch (${cycle_timing(cell.TCyclesBranch, cell.TCyclesBranch)})</th>`;
+        header.insertCell().outerHTML = `<th>with branch (${cycleTiming(cell.TCyclesBranch, cell.TCyclesBranch)})</th>`;
     }
 
     const tbody = table.createTBody();
@@ -179,7 +170,7 @@ function generateAdvancedTiming(cell: Opcode) {
     return table;
 }
 
-function getFlagText(flag: string) {
+function getFlagText(flag: Flag) {
     switch (flag) {
         case "-": return "unmodified";
         case "0": return "unset";
@@ -242,8 +233,8 @@ function searchBoxKeyUp(searchBox: HTMLSelectElement | null = null) {
 
     if (!tables) return;
 
-    const unprefixedTable = document.querySelector(`#unprefixed-${width}-${cycle_mode} tbody`);
-    const CBPrefixedTable = document.querySelector(`#cbprefixed-${width}-${cycle_mode} tbody`);
+    const unprefixedTable = document.querySelector(`#unprefixed-${width}-${cycleMode} tbody`);
+    const CBPrefixedTable = document.querySelector(`#cbprefixed-${width}-${cycleMode} tbody`);
 
     if (unprefixedTable === null || CBPrefixedTable === null) return;
 
@@ -262,25 +253,25 @@ function searchBoxKeyUp(searchBox: HTMLSelectElement | null = null) {
     }
 }
 
-function ready(fn) {
+function ready(fn: EventListener) {
     document.addEventListener('DOMContentLoaded', fn);
 }
 
 ready(() => {
-    const tableWidth = <HTMLSelectElement>document.getElementsByName('table_width').item(0);
-    const cycleMode = <HTMLSelectElement>document.getElementsByName('cycle_mode').item(0);
+    const tableWidthSelect = <HTMLSelectElement>document.getElementsByName('table_width').item(0);
+    const cycleModeSelect = <HTMLSelectElement>document.getElementsByName('cycle_mode').item(0);
 
     function tableParamUpdate() {
-        const width = parseInt(tableWidth.selectedOptions[0].value);
-        cycle_mode = <CycleMode>(cycleMode.selectedOptions[0].value);
+        const width = parseInt(tableWidthSelect.selectedOptions[0].value);
+        cycleMode = <CycleMode>(cycleModeSelect.selectedOptions[0].value);
         redrawTables(width);
     }
 
     const floatingBox = document.getElementById('floating-box');
     if (floatingBox !== null) floatingBox.onclick = e => e.stopPropagation();
 
-    tableWidth.onchange = tableParamUpdate;
-    cycleMode.onchange = tableParamUpdate;
+    tableWidthSelect.onchange = tableParamUpdate;
+    cycleModeSelect.onchange = tableParamUpdate;
 
     tableParamUpdate();
 

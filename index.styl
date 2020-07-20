@@ -117,20 +117,26 @@ td.opcode
     > div
         padding: 0.8em
         
-    &.x16\\/lsm
-        opcode-coloring(mediumorchid)
-    &.x16\\/alu
-        opcode-coloring(limegreen)
-    &.x8\\/rsb
+    &.lsm
+        &.x8
+            opcode-coloring(orchid)
+        &.x16
+            opcode-coloring(mediumorchid)
+
+    &.alu
+        &.x8
+            opcode-coloring(lime)
+        &.x16
+            opcode-coloring(limegreen)
+
+    &.x8.rsb
         opcode-coloring(cyan)
-    &.x8\\/alu
-        opcode-coloring(lime)
-    &.control\\/misc
-        opcode-coloring(tomato)
-    &.x8\\/lsm
-        opcode-coloring(orchid)
-    &.control\\/br
-        opcode-coloring(lightsalmon)
+        
+    &.control
+        &.misc
+            opcode-coloring(tomato)
+        &.br
+            opcode-coloring(lightsalmon)
 
 td.opcode.unused
     background-color: #c8cdd1

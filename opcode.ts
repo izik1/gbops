@@ -21,8 +21,10 @@ export interface TimingPoint {
 }
 
 export interface Flags {
-    Z: string;
-    N: string;
-    H: string;
-    C: string;
+    Z: Flag;
+    N: Flag;
+    H: Flag;
+    C: Flag;
 }
+
+export type Flag = "Z" | "N" | "H" | "C" | "-" | "1" | "0";
