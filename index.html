@@ -46,16 +46,6 @@
                 1 4t <br />
                 Z&#8203;0&#8203;0&#8203;0<br />
             </div> <br />
-            <h5>What's a <code>t</code>?</h5>
-            <p>
-                The <code>t</code> in the example instruction means a "T-Cycle" which is one of the two ways to
-                count the number of clock ticks on the Game Boy.
-                A T-Cycle is 1 Game Boy cpu clock tick. (t=tick)
-                The other way is with "M-Cycles" (machine cycles) which are just <code>t/4</code> (4t=1m).
-                [wip: Description of <b>why</b> to use M-cycles goes here.]
-                However more complex timing uses T-Cycles. This opcode table allows you to switch between using either
-                or both.
-            </p>
             <h5>Flags?</h5>
             <p>
                 The names for the flags that this opcode table uses are:<br />
@@ -65,27 +55,71 @@
                 set or reset depending on the result of the instrucion (letter for flag)
                 or do nothing (-)
             </p>
-            <h5>How does the search bar work?</h5>
+            <h5 id="help-searchbar">How does the search bar work?</h5>
             <p>
-                The search bar works by comparing properties of an opcode to a given number&#47;string.<br />
-                The currently supported properties are <code>length|len</code>, <code>name</code> and <code>number|num|opcode|op|&#35;</code>.<br />
-                The currently supported comparisions are <code>&lt;</code>, <code>&lt;=</code>, <code>=</code>, <code>&gt;=</code>
-                and <code>&gt;</code>.<br />
-                Numbers can be given in bases 16-10-8 and 2.
+                The search bar works by comparing properties of an opcode to a given number&#47;string.<br /> The currently supported properties are <code>length|len</code>, <code>name</code> and <code>number|num|opcode|op|&#35;</code>.<br /> The currently supported comparisions are <code>&lt;</code>, <code>&lt;=</code>, <code>=</code>, <code>&gt;=</code> and <code>&gt;</code>.<br /> Numbers can be given in bases 16-10-8 and 2.
             </p>
             <h5>Some search examples:</h5>
             <p>
                 <code>.name="LD"</code>, this searches for all opcodes containing "LD" in their name.<br />
-                <code>.name="LD" .len=2</code>, this searches for opcodes all containing "LD" in their name and a
-                length of 2. <br />
-                <code>.name="LD" .len=2 or .opcode=0x76</code>, same as the previous but it <b>also</b> shows all
-                opcodes with index 0x76, which are <code>HALT</code> and <code>BIT 6,(HL)</code>
+                <code>.name="LD" .len=2</code>, this searches for opcodes all containing "LD" in their name and a length of 2. <br />
+                <code>.name="LD" .len=2 or .opcode=0x76</code>, same as the previous but it <b>also</b> shows all opcodes with index 0x76, which are <code>HALT</code> and <code>BIT 6,(HL)</code>
             </p>
             <h5>Help!!! Why isn't the search bar working!?</h5>
             <p>The search bar is currently a huge WIP and will have tons of bugs, if you find one please report it to
                 <a href="https://github.com/izik1/gbops/issues">The Issue Tracker</a></p>
         </details>
 
+        <details style="padding: 8px;" id="glossary">
+            <summary>Glossary</summary>
+            <dl>
+                <dt>Groups</dt>
+                <dd>
+                    <dl class="sameline groups">
+                        <dt class="lsm x8">x8/lsm</dt>
+                        <dd>8-bit Load/Store/Move</dd>
+                        <dt class="lsm x16">x16/lsm</dt>
+                        <dd>16-bit Load/Store/Move</dd>
+                        <dt class="alu x8">x8/alu</dt>
+                        <dd>8-bit Arithmetic Logic Unit</dd>
+                        <dt class="alu x16">x16/alu</dt>
+                        <dd>16-bit Arithmetic Logic Unit</dd>
+                        <dt class="rsb x8">x8/rsb</dt>
+                        <dd>8-bit ???</dd>
+                        <dt class="control br">control/br</dt>
+                        <dd>branch</dd>
+                        <dt class="control misc">control/misc</dt>
+                        <dd>misc</dd>                        
+                    </dl>
+                </dd>
+                <dt>Units</dt>
+                <dd>
+                    <dl class="sameline">
+                        <dt>T-Edge</dt>
+                        <dd>A single tick of the Game Boy's clock, from low to high, or high to low - 8,388,608 hz</dd>
+                        <dt>T-Cycle (t)</dt>
+                        <dd>Two T-Edges - 4,194,304 hz</dd>
+                        <dt>M-Cycle (m)</dt>
+                        <dd>Four T-Cycles - 1,048,576 hz</dd>
+                        <dt>h, 0x</dt>
+                        <dd><a href="https://en.wikipedia.org/wiki/Hexadecimal">Hexidecimal</a></dd>
+                    </dl>
+                </dd>
+                <dt>Types</dt>
+                <dd>
+                    <dl class = "sameline">
+                        <dt>u8</dt>
+                        <dd>8-bit unsigned integer</dd>
+                        <dt>i8</dt>
+                        <dd>8-bit signed integer</dd>
+                        <dt>u16</dt>
+                        <dd>16-bit unsigned integer</dd>
+                        <dt>(...)</dt>
+                        <dd>pointer dereference</dd>
+                    </dl>
+                </dd>
+            </dl>
+        </details>
         <label style="padding: 8px;">
             Table Width:
             <select name="table_width">
@@ -101,10 +135,13 @@
                 <option value="both">both</option>
             </select>
         </label>
-        <label style="padding: 8px;">
-            Search:
-            <input type="search" name="search-box" />
-        </label>
+        <div style="display: inline-block;">
+            Poorly implemented, see help for syntax, might fail unexpectedly.<br>
+            <label style="padding: 8px;">
+                Search:
+                <input type="search" name="search-box" />
+            </label>
+        </div>
         <div style="float: right">
             If you find any bugs or something that seems out of place file an <a href="https://github.com/izik1/gbops/issues">issue</a>.
         </div>

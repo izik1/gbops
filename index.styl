@@ -41,6 +41,7 @@ table.opcode
     background-color: snow
     font-family: 'KoHo', sans-serif
     font-size: 15px
+    font-color: #333
 }
 
 #floating-box-container {
@@ -153,11 +154,53 @@ code
     background-color: rgb(230, 230, 230)
     font-family: 'Ubuntu Mono', monospace
 
-#header {
-    padding-left: 1em
-    padding-right: 1em
-    padding-bottom: 0.5em
-}
+#header
+    padding: 0 1em 0.5em 1em
+
+#glossary
+    padding: 1em 1em 0.5em 1em
+    >dl
+        >dt
+            font-weight: bold
+        padding-bottom: 0.5em
+
+dl.groups, ul.groups
+    list-style: none;
+    >li,>dt
+        &::before
+            content: "■"
+            padding-right: 1em;
+            color: orchid;
+
+        &.lsm
+            &.x8::before
+                color: orchid
+            &.x16::before
+                color: mediumorchid
+        
+        &.alu
+            &.x8::before
+                color: lime
+            &.x16::before
+                color: limegreen
+
+        &.x8.rsb::before
+            color: cyan
+            
+        &.control
+            &.misc::before
+                color: tomato
+            &.br::before
+                color: lightsalmon
+
+dl.sameline
+    display: grid;
+    grid-template-columns: max-content auto auto
+    dt
+        grid-column-start: 1
+
+a
+    color: darkcyan;
 
 .floating-grid-container
     display: grid
