@@ -4806,7 +4806,7 @@
       }
     },
     {
-      "Name": "SWAP 0",
+      "Name": "SWAP C",
       "Group": "x8/rsb",
       "TCyclesMax": 8,
       "TCyclesMin": 8,
