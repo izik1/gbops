@@ -3,9 +3,9 @@
 ``<name/link> size time_t(time_m) `flags` ``
 ### Unprefixed Opcodes:
 
-|#|0|1|2|3|4|5|6|7|8|9|A|B|C|D|E|F|
+|#|————0————|———1———|2|3|4|5|6|7|8|9|A|B|C|D|E|F|
 |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
-|0|[NOP](nm/NOP) 1 4t(1m) `----`|[LD BC,u16](nm/LDBC,u16) 3 12t(3m) `----`|[LD (BC),a](nm/LD(BC),a) 1 8t(2m) `----`|[INC BC](nm/INCBC) 1 8t(2m) `----`|[INC B](nm/INCB) 1 4t(1m) `Z0H-`|[DEC B](nm/DECB) 1 4t(1m) `Z1H-`|[LD B,u8](LDBu8) |-|-|-|-|-|-|-|-|-|
+|0|[NOP](nm/NOP) 1 4t(1m) `----`|[LD BC,u16](nm/LDBC,u16) 3 12t(3m) `----`|[LD (BC),a](nm/LD(BC),a) 1 8t(2m) `----`|[INC BC](nm/INCr16) 1 8t(2m) `----`|[INC B](nm/INCr8) 1 4t(1m) `Z0H-`|[DEC B](nm/DECr8) 1 4t(1m) `Z1H-`|[LD B,u8](nm/LDr8u8) 2 8t(2m) `----`|[RLCA](nm/RLCA) 1 4t(1m) `000C`|[LD (u16),SP](nm/LD(u16),SP) 3 20t(5m) `----`|[ADD HL,BC](nm/ADDHL,r16) 1 8t(2m) `-0HC`|[LD A,(BC)](nm/LDA,(r16)) 1 8t(2m) `----`|[DEC BC](nm/DECr16) 1 8t(2m) `----`|[INC C](nm/INCr8) 1 4t(1m) `Z0H-`|[DEC C](nm/DECr8) 1 4t(1m) `Z1H-`|[LD C,u8](nm/LDr8u8) 2 8t(2m) `----`|[RRCA](nm/RRCA) 1 4t(1m) `000C`|
 |1|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |2|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |3|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
@@ -27,7 +27,7 @@ As a bit of clarification, all CB prefixed Opcodes take at least 8 t(2m)-cycles 
 
 |#|0|1|2|3|4|5|6|7|8|9|A|B|C|D|E|F|
 |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
-|0|[RLC B](cb/RLCB) 2 8t(2m) `Z00C`|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|0|[RLC B](cb/RLCr8) 2 8t(2m) `Z00C`|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |1|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |2|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |3|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
