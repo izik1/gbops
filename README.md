@@ -18,4 +18,4 @@ Write people's emulators for them. (that's for other documentation to do)
 Nothing here yet.
 
 # gbops
-You may find the table [here](table/table.html).  
+You may find a rendered version of the table [here](table/table.html). and the raw json version [here](table/dmgops.json)
