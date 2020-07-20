@@ -1,0 +1,21 @@
+table, th, td {
+    font-family: monospace;
+    font-size: small;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+tr:nth-child(odd) {
+    background-color: lightgrey;
+}
+
+th, td {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
