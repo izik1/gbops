@@ -146,8 +146,10 @@ function generateAdvancedFlags(flags: Flags) {
 function enableFloatingBox(target: JQuery<any>, table: Opcode[]) {
     // kind of a hack, calculate the 2-dim index of the cell.
     const x = target.index() - 1;
-    const width = target.siblings().length - 1;
+    const width = target.siblings().length;
     const y = target.parent().index() - 1;
+
+    console.log(`x: ${x} width: ${width} y: ${y}`)
 
     const cell = table[y * width + x];
 
@@ -159,7 +161,7 @@ function enableFloatingBox(target: JQuery<any>, table: Opcode[]) {
             .append("<br>")
             .append(`<strong>Group:</strong> ${cell.Group}`)
         )
-        .append(`<div class="timing-column">${generateAdvancedTiming(cell)}</div>`);
+        .append($('<div class="timing-column"/>').append(generateAdvancedTiming(cell)));
     
     $('#floating-box-container').show();
 }
