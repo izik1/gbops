@@ -147,6 +147,21 @@ class ParsedSearch {
     constructor(ty, val) {
         this.ty = ty;
         this.val = val;
+
+        if (this.ty === "prop") {
+            this.prop_ty = null;
+            if (["number", "num", "opcode", "op", "len", "length"].includes(this.val)) {
+                this.prop_ty = "number";
+            } else if (["name"].includes(this.val)) {
+                this.prop_ty = "str";
+            }
+
+            switch (this.prop_ty) {
+                case "str": this.supportedOperators = ["="]; break;
+                case "number": this.supportedOperators = ["<", "<=", "=", ">", ">="]; break;
+                default: throw new Error(`Unexpected prop type '${this.prop_ty}'`);
+            }
+        }
     }
 
     push(val) {
@@ -315,25 +330,16 @@ function runOpcodeSearch(str, opcode, opcodeNumber) {
     return parsed.exec(opcode, opcodeNumber);
 }
 
-function propSupportsCompare(prop, compare, rhs) {
-    switch (prop.val) {
-        case "name": return ['<', '<=', '=', '>=', '>'].includes(compare) && rhs.ty === "str";
-        case "#":
-        case "num":
-        case "number":
-        case "opcode":
-        case "op":
-        case "len":
-        case "length":
-            return ['<', '<=', '=', '>=', '>'].includes(compare) && rhs.ty === "number";
-        default: throw new Error(`unexpected prop .${prop.val}`);
-    }
-}
-
 function validateOpcodeSearch(parsed) {
     switch (parsed.ty) {
         case "keyword": return (validateOpcodeSearch(parsed.val.left) && validateOpcodeSearch(parsed.val.right))
-        case "operator": return (parsed.val.left.ty === "prop" && propSupportsCompare(parsed.val.left, parsed.val.val, parsed.val.right));
+        case "operator": {
+            const left = parsed.val.left;
+            const right = parsed.val.right;
+            const op = parsed.val.val;
+            return left.ty === "prop" && left.supportedOperators.includes(op) && left.prop_ty === right.ty;
+        }
+
         case "block": {
             for (let node of parsed.val) {
                 if (!validateOpcodeSearch(node)) return false;
