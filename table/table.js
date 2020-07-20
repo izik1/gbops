@@ -1,8 +1,19 @@
-var cycleMode = 't';
+var cycle_mode = null;
 
-var width = 16;
+var width = null;
 
 var tables = [];
+
+group_colors = {
+    "x16/lsm": "MediumOrchid",
+    "x16/alu": "LimeGreen",
+    "x8/rsb": "Cyan",
+    "x8/alu": "Lime",
+    "control/misc": "Tomato",
+    "x8/lsm": "Orchid",
+    "control/br": "LightSalmon",
+    "unused": "SlateGray"
+};
 
 function table_width_changed(event) {
     width = event.target.value;
@@ -10,7 +21,7 @@ function table_width_changed(event) {
 }
 
 function cycle_mode_changed(event) {
-    cycleMode = event.target.value;
+    cycle_mode = event.target.value;
     redrawTables();
 }
 
@@ -40,26 +51,15 @@ var table_tmpl_helper = {
 
 var op_tmpl_helpers = {
     timing: (min, max) => {
-        switch (cycleMode) {
+        switch (cycle_mode) {
             case "t": return min !== max ? `${min}t-${max}t` : `${min}t`;
             case "m": return min !== max ? `${min / 4}m-${max / 4}m` : `${min / 4}m`;
             case "both":
             default: return min !== max ? `${min}t‑${max}t&#8203;/&#8203;${min / 4}m‑${max / 4}m` : `${min}t&#8203;/&#8203;${min / 4}m`; // &#8203; is a non-breaking space.
         }
     },
-    color: function (group) {
-        switch (group) {
-            case "x16/lsm": return "MediumOrchid";
-            case "x16/alu": return "LimeGreen";
-            case "x8/rsb": return "Cyan";
-            case "x8/alu": return "Lime";
-            case "control/misc": return "Tomato";
-            case "x8/lsm": return "Orchid";
-            case "control/br": return "LightSalmon";
-            case "unused": return "SlateGray";
-            default: return "inherit";
-        }
-    }
+
+    color: group => group_colors[group] ? group_colors[group] : "inherit"
 };
 
 function redrawTables() {
@@ -88,17 +88,26 @@ function redrawTables() {
 
 function loadTable(id, table) {
     if (!tables[width]) tables[width] = [];
-    if (!tables[width][id + '_' + cycleMode]) {
+    if (!tables[width][id + '_' + cycle_mode]) {
         if (!table) return null;
-        tables[width][id + '_' + cycleMode] = $($.templates('#table-tmpl').render(
+        tables[width][id + '_' + cycle_mode] = $($.templates('#table-tmpl').render(
             { width: width, id: id, table: table },
             table_tmpl_helper
         ));
     }
 
-    return tables[width][id + '_' + cycleMode].clone().attr('id', id);
+    return tables[width][id + '_' + cycle_mode].clone().attr('id', id);
 }
 
-function loadTables() {
+function init() {
+    function bind_get(name, fn) {
+        var v = $(`select[name="${name}"]`);
+        v.on('change', fn);
+        return v.find(':selected').val();
+    }
+
+    width = bind_get("table_width", table_width_changed);
+    cycle_mode = bind_get("cycle_mode", cycle_mode_changed);
+
     redrawTables();
 }

@@ -21,11 +21,7 @@
     <script src="https://www.jsviews.com/download/jsrender.js"></script>
     <script type="text/javascript" src="table.js"></script>
     <script>
-        window.onload = () => {
-            loadTables();
-            document.querySelector('select[name="table_width"]').onchange = table_width_changed;
-            document.querySelector('select[name="cycle_mode"]').onchange = cycle_mode_changed;
-        }
+        window.onload = () => init();
     </script>
 </head>
 <body>
