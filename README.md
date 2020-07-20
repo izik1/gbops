@@ -8,11 +8,6 @@ Copyright (c) 2018 izik1 MIT License. See the included [LICENSE](LICENSE) file o
 # Goals:
 Create the most accurate and descriptive Gameboy (DMG) Opcode table (so far™)
 
-# Non Goals:
-Save the world.  
-Compile a cake.  
-Write people's emulators for them. (that's for ~~other documentation~~ tutorials to do)
-
 # Contributing:
 
 Nothing here yet.
