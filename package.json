@@ -6,11 +6,12 @@
   "author": "Chloe Ross <orangesnowfox@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "parcel index.html",
-    "build": "parcel build index.html table/index.html table/table.html",
-    "test": "parcel build index.html table/index.html table/table.html"
+    "dev": "parcel --public-url /gbops index.html table/index.html table/table.html",
+    "build": "parcel build --public-url /gbops index.html table/index.html table/table.html",
+    "test": "parcel build --public-url /gbops index.html table/index.html table/table.html"
   },
   "devDependencies": {
+    "cssnano": "^4.1.10",
     "parcel-bundler": "^1.12.3"
   }
 }
