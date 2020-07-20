@@ -1,5 +1,5 @@
 var op_tmpl_helpers = {
-    timing: (min, max) => min !== max ? `${min}t-${max}t/${min/4}m-${max/4}m` : `${min}t/${min/4}m`,
+    timing: (min, max) => min !== max ? `${min}t‑${max}t&#8203;/&#8203;${min/4}m‑${max/4}m` : `${min}t&#8203;/&#8203;${min/4}m`, // &#8203; is a non-breaking space.
 	color: function(group) {
 		switch(group) {
 			case "x16/lsm": return "MediumOrchid"
@@ -8,6 +8,7 @@ var op_tmpl_helpers = {
 			case "x8/alu": return "Lime"
 			case "Control/Misc": return "Tomato"
 			case "x8/lsm": return "Orchid"
+			case "control/br": return "LightSalmon"
 			default: return "inherit"
 		}
 	}
