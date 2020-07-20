@@ -11,7 +11,7 @@ Create the most accurate and descriptive Gameboy (DMG) Opcode table (so far™)
 # Non Goals:
 Save the world.  
 Compile a cake.  
-Write people's emulators for them. (that's for other documentation to do)
+Write people's emulators for them. (that's for ~~other documentation~~ tutorials to do)
 
 # Contributing:
 
