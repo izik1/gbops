@@ -9,6 +9,10 @@ import { runOpcodeSearch } from "./search";
 
 var cycle_mode: string | null = null;
 
+function paddedOpcode(number: number) {
+    return number.toString(16).toUpperCase().padStart(2, '0');
+}
+
 function create_op(op: Opcode) {
     if(op.Name === "UNUSED") return $(`<td class="opcode ${op.Group}"></td>`);
     else return $("<td/>").append($("<div/>").append($("<pre/>").html(
@@ -28,7 +32,7 @@ function get_top_header(width: number) {
 }
 
 function get_rows(step: number, table_data: Opcode[]) {
-    const get_prefix = (row: number) => (row * step).toString(16).toUpperCase().padStart(2, '0') + '+';
+    const get_prefix = (row: number) => paddedOpcode(row * step) + '+';
     const rows = $('<div/>');
 
     for (let row_num = 0; row_num < 0x100 / step; row_num++) {
@@ -149,11 +153,12 @@ function enableFloatingBox(target: JQuery<any>, table: Opcode[]) {
     const width = target.siblings().length;
     const y = target.parent().index() - 1;
 
-    const cell = table[y * width + x];
+    const index = y * width + x;
+    const cell = table[index];
 
     if (cell.Name === "UNUSED") return;
 
-    $('#floating-box').html(`<h3 class="name">${cell.Name}</h3>`).append($('<div class="data-column"/>')
+    $('#floating-box').html(`<h3 class="name">${cell.Name} - 0x${paddedOpcode(index)}</h3>`).append($('<div class="data-column"/>')
             .append(`<strong>Length:</strong> ${cell.Length} ` + (cell.Length === 1 ? "byte" : "bytes"))
             .append(generateAdvancedFlags(cell.Flags))
             .append("<br>")
