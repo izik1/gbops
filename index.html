@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="author" content="Zachery Gyurkovitz">
+    <meta name="author" content="Skyler Ross">
     <meta name="description" content="The most accurate Game Boy opcode table on the market">
-    <meta name="keywords" content="Game Boy, GameBoy, GB, opcode, table, map, emulation, emulation development, emudev, gbdev">
+    <meta name="keywords"
+        content="Game Boy, GameBoy, GB, opcode, table, map, emulation, emulation development, emudev, gbdev">
     <title>gbops - The Game Boy opcode table</title>
     <link rel="preload" href="dmgops.json" as="fetch" type="application/json">
     <link rel="stylesheet" href="index.styl">
@@ -44,17 +45,24 @@
             </p>
             <h5 id="help-searchbar">How does the search bar work?</h5>
             <p>
-                The search bar works by comparing properties of an opcode to a given number&#47;string.<br /> The currently supported properties are <code>length|len</code>, <code>name</code> and <code>number|num|opcode|op|&#35;</code>.<br /> The currently supported comparisions are <code>&lt;</code>, <code>&lt;=</code>, <code>=</code>, <code>&gt;=</code> and <code>&gt;</code>.<br /> Numbers can be given in bases 16-10-8 and 2.
+                The search bar works by comparing properties of an opcode to a given number&#47;string.<br /> The
+                currently supported properties are <code>length|len</code>, <code>name</code> and
+                <code>number|num|opcode|op|&#35;</code>.<br /> The currently supported comparisions are
+                <code>&lt;</code>, <code>&lt;=</code>, <code>=</code>, <code>&gt;=</code> and <code>&gt;</code>.<br />
+                Numbers can be given in bases 16-10-8 and 2.
             </p>
             <h5>Some search examples:</h5>
             <p>
                 <code>.name="LD"</code>, this searches for all opcodes containing "LD" in their name.<br />
-                <code>.name="LD" .len=2</code>, this searches for opcodes all containing "LD" in their name and a length of 2. <br />
-                <code>.name="LD" .len=2 or .opcode=0x76</code>, same as the previous but it <b>also</b> shows all opcodes with index 0x76, which are <code>HALT</code> and <code>BIT 6,(HL)</code>
+                <code>.name="LD" .len=2</code>, this searches for opcodes all containing "LD" in their name and a length
+                of 2. <br />
+                <code>.name="LD" .len=2 or .opcode=0x76</code>, same as the previous but it <b>also</b> shows all
+                opcodes with index 0x76, which are <code>HALT</code> and <code>BIT 6,(HL)</code>
             </p>
             <h5>Help!!! Why isn't the search bar working!?</h5>
             <p>The search bar is currently a huge WIP and will have tons of bugs, if you find one please report it to
-                <a href="https://github.com/izik1/gbops/issues">The Issue Tracker</a></p>
+                <a href="https://github.com/izik1/gbops/issues">The Issue Tracker</a>
+            </p>
         </details>
 
         <details id="glossary">
@@ -76,7 +84,7 @@
                         <dt class="control br">control/br</dt>
                         <dd>branch</dd>
                         <dt class="control misc">control/misc</dt>
-                        <dd>misc</dd>                        
+                        <dd>misc</dd>
                     </dl>
                 </dd>
                 <dt>Units</dt>
@@ -94,7 +102,7 @@
                 </dd>
                 <dt>Types</dt>
                 <dd>
-                    <dl class = "sameline">
+                    <dl class="sameline">
                         <dt>u8</dt>
                         <dd>8-bit unsigned integer</dd>
                         <dt>i8</dt>
@@ -132,7 +140,8 @@
             </div>
         </div>
         <div style="float: right">
-            If you find any bugs or something that seems out of place file an <a href="https://github.com/izik1/gbops/issues">issue</a>.
+            If you find any bugs or something that seems out of place file an <a
+                href="https://github.com/izik1/gbops/issues">issue</a>.
         </div>
     </header>
     <div id="floating-box-container" style="display: none;" onClick="this.style.display = 'none';">

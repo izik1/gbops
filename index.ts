@@ -17,7 +17,7 @@ function paddedOpcode(number: number) {
 }
 
 function tableName(type: TableType): string {
-    switch(type) {
+    switch (type) {
         case 'unprefixed': return 'Unprefixed';
         case 'cbprefixed': return '0xCB Prefixed';
     }
@@ -235,7 +235,7 @@ function searchBoxKeyUp(searchBox: HTMLSelectElement | null = null) {
     const width = parseInt((<HTMLSelectElement>document.getElementsByName('table_width').item(0)).selectedOptions[0].value);
 
     if (!tables) return;
-    if(searchString == "") return;
+    if (searchString == "") return;
 
     const unprefixedTable = document.querySelector(`#unprefixed-${width}-${cycleMode} tbody`);
     const CBPrefixedTable = document.querySelector(`#cbprefixed-${width}-${cycleMode} tbody`);
