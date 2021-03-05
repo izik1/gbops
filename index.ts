@@ -274,6 +274,15 @@ ready(() => {
     const floatingBox = document.getElementById('floating-box');
     if (floatingBox !== null) floatingBox.onclick = e => e.stopPropagation();
 
+    const floatingBoxContainer = document.getElementById('floating-box-container');
+    if (floatingBoxContainer !== null) {
+        window.addEventListener('keydown', e => {
+            if (e.code === 'Escape') {
+                floatingBoxContainer.click();
+            }
+        })
+    }
+
     tableWidthSelect.onchange = tableParamUpdate;
     cycleModeSelect.onchange = tableParamUpdate;
 
