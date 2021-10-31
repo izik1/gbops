@@ -23,16 +23,17 @@ function tableName(type: TableType): string {
     }
 }
 
-function createOp(op: Opcode, index: number, cell: HTMLTableDataCellElement) {
+function createOp(op: Opcode, index: number, cell: HTMLTableCellElement) {
     cell.classList.add('opcode');
     cell.classList.add(...op.Group.split('/'));
     cell.dataset.index = index.toString();
 
     if (op.Name !== "UNUSED") {
-        const pre = cell.appendChild(document.createElement('div')).appendChild(document.createElement('pre'));
+        const content = cell.appendChild(document.createElement('div'))
+            .appendChild(document.createElement('div'));
 
-        pre.textContent = `${op.Name}\n` +
-            `${op.Length} ${cycleTiming(op.TCyclesNoBranch, op.TCyclesBranch)}\n` +
+        content.innerHTML = `${op.Name}<br>` +
+            `${op.Length} ${cycleTiming(op.TCyclesNoBranch, op.TCyclesBranch)}<br>` +
             `${op.Flags.Z}\u200b${op.Flags.N}\u200b${op.Flags.H}\u200b${op.Flags.C}`;
     }
 }

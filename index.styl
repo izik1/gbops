@@ -30,7 +30,7 @@ table.opcode
     position: relative
     table-layout: fixed
     width: 100%
-    min-width: 10em * 15
+    min-width: 75em
     margin-bottom: 1em
     background-color: black
     border-spacing: 0px;
@@ -68,6 +68,7 @@ table.opcode
                 position: sticky
                 top: 0px
                 z-index: 1
+                padding 0.8em 0.3em;
 
     tbody>tr
         &:nth-of-type(even)>th
@@ -136,8 +137,10 @@ h1
 }
 
 opcode-coloring(color)
-    > div
-        background-color: color - rgba(0, 0, 0, 0.5)
+    $lightend = lighten(color, 40%);
+    background-color: $lightend
+    &:not(.unused):hover
+        background-color: lighten($lightend, 25%)
     &::before
         background-color: color
 
@@ -156,10 +159,12 @@ td.opcode
         background-color: slategray
         content: ""
 
-    pre
-        display inline
     > div
-        padding: 0.8em
+        padding: 0.8em 0.4em 0.8em 0.75em
+        > div
+            overflow-wrap: break-word;
+            display: inline;
+
 
     &.lsm
         &.x8
@@ -184,10 +189,6 @@ td.opcode
 
 td.opcode.unused
     background-color: #c8cdd1
-
-td.opcode:not(.unused):hover
-    background-color: rgb(220, 220, 220)
-
 
 td.opcode.hidden
     visibility: hidden

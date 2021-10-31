@@ -2,7 +2,7 @@
   "name": "gbops",
   "version": "1.0.0",
   "repository": "git@github.com:izik1/gbops.git",
-  "author": "Chloe Ross <orangesnowfox@gmail.com>",
+  "author": "Skyler Ross <orangesnowfox@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "parcel serve --public-url /gbops index.html table/index.html table/table.html",
