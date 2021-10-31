@@ -10,7 +10,8 @@
     "test": "parcel build --public-url /gbops index.html table/index.html table/table.html"
   },
   "devDependencies": {
-    "parcel": "next",
-    "stylus": "^0.54.5"
+    "@parcel/transformer-stylus": "^2.0.0",
+    "parcel": "^2.0.0",
+    "stylus": "^0.55.0"
   }
 }
