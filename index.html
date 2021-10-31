@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Skyler Ross">
-    <meta name="description" content="The most accurate Game Boy opcode table on the market">
+    <meta name="description" content="An up-to-date and accurate Game Boy opcode table">
     <meta name="keywords"
         content="Game Boy, GameBoy, GB, opcode, table, map, emulation, emulation development, emudev, gbdev">
     <title>gbops - The Game Boy opcode table</title>
@@ -16,8 +16,8 @@
 
 <body>
     <header>
-        <h1 id="titlecard">gbops, the most accurate&trade; opcode table for the Game Boy</h1>
-        <details id="help-section">
+        <h1 id="titlecard">gbops, an accurate opcode table for the Game Boy</h1>
+        <details class="header-section">
             <summary>Help</summary>
             <h5>Instruction format: </h5>
 
@@ -43,7 +43,7 @@
                 set or reset depending on the result of the instrucion (letter for flag)
                 or do nothing (-)
             </p>
-            <h5 id="help-searchbar">How does the search bar work?</h5>
+            <h5>How does the search bar work?</h5>
             <p>
                 The search bar works by comparing properties of an opcode to a given number&#47;string.<br /> The
                 currently supported properties are <code>length|len</code>, <code>name</code> and
@@ -65,7 +65,7 @@
             </p>
         </details>
 
-        <details id="glossary">
+        <details id="glossary" class="header-section">
             <summary>Glossary</summary>
             <dl>
                 <dt>Groups</dt>
@@ -114,6 +114,22 @@
                     </dl>
                 </dd>
             </dl>
+        </details>
+        <!-- TODO: move this to end of document, requires making the table layout *flow* -->
+        <details class="header-section" id="errata">
+            <summary><a class="self-link" href="#errata" aria-hidden="true">&num;</a> Errata from prior
+                versions</summary>
+            <h4 id="errata-stop-length">
+                <!-- the following link has the unfortunate problem of being in a non-expanded field.-->
+                <!-- <a class="self-link" href="#errata-stop-length">#</a> -->
+                <code>STOP</code> length
+            </h4>
+            <p>
+                Prior to <time datetime="2021-10-30">October 30th, 2021</time>,
+                <code>STOP</code> was referenced as being two bytes long, however, it is one byte.<br />
+                There is a potentially confusing fact in that <code>STOP</code> skips one byte after itself.<br />
+                However, it doesn't care <em>what</em> byte comes after it.
+            </p>
         </details>
         <div id="table-controls">
             <label>

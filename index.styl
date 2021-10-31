@@ -6,6 +6,9 @@ rsb-8-color = deepskyblue
 control-br-color = tomato
 control-misc-color = lightsalmon
 
+default-background = snow
+
+
 pre, table.opcode, div.sample-instruction
     font-size: 0.7rem
 
@@ -13,12 +16,12 @@ pre, table.opcode, div.sample-instruction
     text-align: center
 
 input, select
-    background-color: Snow
+    background-color: default-background
     color: rgb(34, 34, 34)
     border: 1px solid grey
-    fill: snow
-    flood-color: snow
-    stop-coor: snow
+    fill: default-background
+    flood-color: default-background
+    stop-coor: default-background
     border-radius: 2px
     box-shadow: none
 
@@ -82,7 +85,7 @@ table.opcode
             z-index: 1
 
 :root {
-    background-color: snow
+    background-color: default-background
     font-family: 'KoHo', sans-serif
     font-size: 16px
     color: #222
@@ -130,7 +133,7 @@ h1
         height: 60%
     }
 
-    background-color: snow
+    background-color: default-background
     padding: 0
     font-family: 'Ubuntu Mono', monospace
     overflow: auto
@@ -201,14 +204,14 @@ header
     margin: 0 1em 0.5em 1em
 
 #glossary
-    margin: 1em 1em 0.5em 1em
     >dl
         >dt
             font-weight: bold
         padding-bottom: 0.5em
 
-#help-section
-   margin: 0.8em
+.header-section
+    margin: 1em 1em 0.5em 1em
+
 
 dl.groups, ul.groups
     list-style: none;
@@ -247,6 +250,9 @@ dl.sameline
 
 a
     color: darkcyan;
+    &.self-link:not(:hover)
+        color: rgba(darkcyan, 0.5);
+
 
 .floating-grid-container
     display: grid

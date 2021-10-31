@@ -361,7 +361,7 @@
       "Group": "control/misc",
       "TCyclesBranch": 4,
       "TCyclesNoBranch": 4,
-      "Length": 2,
+      "Length": 1,
       "Flags": {
         "Z": "-",
         "N": "-",
