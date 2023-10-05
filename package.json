@@ -12,6 +12,6 @@
   "devDependencies": {
     "@parcel/transformer-stylus": "^2.0.0",
     "parcel": "^2.0.0",
-    "stylus": "^0.55.0"
+    "stylus": "^0.60.0"
   }
 }
